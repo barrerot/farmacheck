@@ -52,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: diagnostico.php');
         exit();
     } else {
-        header('Refresh: 1; URL=pregunta.php?num=' . ($pregunta_num + 1));
-        exit();
+        $next_pregunta_num = $pregunta_num + 1;
+        echo "<script>setTimeout(function() { window.location.href = 'pregunta.php?num=$next_pregunta_num'; }, 1000);</script>";
     }
 }
 
@@ -102,6 +102,11 @@ $pregunta_actual = $preguntas[$pregunta_num - 1];
                 document.getElementById('questionForm').submit();
             }, 1000); // 1 second delay for the fade-out effect
         }
+
+        window.addEventListener('load', function() {
+            const container = document.querySelector('.container');
+            container.classList.add('fade-in');
+        });
     </script>
 </head>
 <body>
