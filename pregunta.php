@@ -79,10 +79,12 @@ $pregunta_actual = $preguntas[$pregunta_num - 1];
         }
     </style>
     <script>
-        function selectOption(button) {
+        function selectOption(button, value) {
             const options = document.querySelectorAll('.option');
             options.forEach(option => option.classList.remove('selected'));
             button.classList.add('selected');
+            document.getElementById('respuesta').value = value;
+            document.getElementById('questionForm').submit();
         }
     </script>
 </head>
@@ -102,16 +104,15 @@ $pregunta_actual = $preguntas[$pregunta_num - 1];
             <p><?php echo htmlspecialchars($pregunta_actual['descripcion']); ?></p>
             <form id="questionForm" method="post">
                 <input type="hidden" name="pregunta_id" value="<?php echo $pregunta_actual['id']; ?>">
-                <button type="button" class="option" onclick="selectOption(this); document.getElementById('respuesta').value='Sí';">Sí</button>
-                <button type="button" class="option" onclick="selectOption(this); document.getElementById('respuesta').value='No';">No</button>
                 <input type="hidden" id="respuesta" name="respuesta" value="">
+                <button type="button" class="option" onclick="selectOption(this, 'Sí');">Sí</button>
+                <button type="button" class="option" onclick="selectOption(this, 'No');">No</button>
             </form>
         </div>
         <div class="navigation">
             <?php if ($pregunta_num > 1): ?>
                 <a href="pregunta.php?num=<?php echo $pregunta_num - 1; ?>" class="back-button">Atrás</a>
             <?php endif; ?>
-            <button type="submit" form="questionForm" class="next-button">Siguiente →</button>
         </div>
     </div>
 </body>
