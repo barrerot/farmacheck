@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: diagnostico.php');
         exit();
     } else {
-        header('Location: pregunta.php?num=' . ($pregunta_num + 1));
+        header('Refresh: 1; URL=pregunta.php?num=' . ($pregunta_num + 1));
         exit();
     }
 }
@@ -77,6 +77,16 @@ $pregunta_actual = $preguntas[$pregunta_num - 1];
         .option:hover {
             background-color: #e0e0e0;
         }
+
+        .fade-out {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        .fade-in {
+            opacity: 1;
+            transition: opacity 1s ease-in;
+        }
     </style>
     <script>
         function selectOption(button, value) {
@@ -84,12 +94,18 @@ $pregunta_actual = $preguntas[$pregunta_num - 1];
             options.forEach(option => option.classList.remove('selected'));
             button.classList.add('selected');
             document.getElementById('respuesta').value = value;
-            document.getElementById('questionForm').submit();
+            
+            const content = document.querySelector('.content');
+            content.classList.add('fade-out');
+
+            setTimeout(() => {
+                document.getElementById('questionForm').submit();
+            }, 1000); // 1 second delay for the fade-out effect
         }
     </script>
 </head>
 <body>
-    <div class="container">
+    <div class="container fade-in">
         <div class="header">
             <h2>PREGUNTA <?php echo $pregunta_num; ?> de <?php echo $total_preguntas; ?></h2>
             <div class="progress-bar-container">
