@@ -7,19 +7,37 @@ if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);
 }
 
+echo "Conexión a la base de datos establecida.<br>";
+
+// Verificar si la sesión existe, si no, crear una nueva
 if (!isset($_SESSION['session_id'])) {
+    echo "Creando nueva sesión.<br>";
     $_SESSION['session_id'] = bin2hex(random_bytes(16));
-    $stmt = $mysqli->prepare("INSERT INTO sesiones (session_id) VALUES (?)");
-    $stmt->bind_param('s', $_SESSION['session_id']);
-    $stmt->execute();
-    $stmt->close();
+    $stmt = $mysqli->prepare("INSERT INTO sesiones (session_id, completado) VALUES (?, 0)");
+    if ($stmt) {
+        $stmt->bind_param('s', $_SESSION['session_id']);
+        if ($stmt->execute()) {
+            echo "Sesión creada y guardada en la base de datos.<br>";
+        } else {
+            echo "Error al ejecutar la declaración de sesión: " . $stmt->error . "<br>";
+        }
+        $stmt->close();
+    } else {
+        die("Error en la preparación de la declaración de sesión: " . $mysqli->error);
+    }
 }
 
 $session_id = $_SESSION['session_id'];
+echo "Session ID: " . $session_id . "<br>";
 
 // Obtener todas las preguntas en el orden en que están en la base de datos
-$result = $mysqli->query("SELECT id, necesidad, descripcion FROM preguntas ORDER BY id ASC");
-$preguntas = $result->fetch_all(MYSQLI_ASSOC);
+$result = $mysqli->query("SELECT id, nivel, nivel_descripcion, necesidad, descripcion, explicacion, tips FROM preguntas ORDER BY id ASC");
+if ($result) {
+    echo "Preguntas obtenidas correctamente.<br>";
+    $preguntas = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    die("Error al obtener preguntas: " . $mysqli->error);
+}
 
 // Calcular el progreso
 $pregunta_num = isset($_GET['num']) ? (int)$_GET['num'] : 1;
@@ -31,16 +49,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pregunta_id = $_POST['pregunta_id'];
 
     $stmt = $mysqli->prepare("INSERT INTO respuestas (session_id, pregunta_id, respuesta) VALUES (?, ?, ?)");
-    $stmt->bind_param('sis', $session_id, $pregunta_id, $respuesta);
-    $stmt->execute();
-    $stmt->close();
+    if ($stmt) {
+        $stmt->bind_param('sis', $session_id, $pregunta_id, $respuesta);
+        if ($stmt->execute()) {
+            echo "Respuesta guardada.<br>";
+        } else {
+            echo "Error al ejecutar la declaración de respuesta: " . $stmt->error . "<br>";
+        }
+        $stmt->close();
+    } else {
+        die("Error en la preparación de la declaración de respuesta: " . $mysqli->error);
+    }
 
     if ($pregunta_num >= $total_preguntas) {
         $stmt = $mysqli->prepare("UPDATE sesiones SET completado = 1 WHERE session_id = ?");
-        $stmt->bind_param('s', $session_id);
-        $stmt->execute();
-        $stmt->close();
-
+        if ($stmt) {
+            $stmt->bind_param('s', $session_id);
+            if ($stmt->execute()) {
+                echo "Sesión completada.<br>";
+            } else {
+                echo "Error al ejecutar la declaración de actualización de sesión: " . $stmt->error . "<br>";
+            }
+            $stmt->close();
+        } else {
+            die("Error en la preparación de la declaración de actualización de sesión: " . $mysqli->error);
+        }
         header('Location: diagnostico.php');
         exit();
     } else {

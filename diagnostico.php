@@ -10,7 +10,10 @@ if ($mysqli->connect_error) {
 $session_id = isset($_GET['session_id']) ? $_GET['session_id'] : $_SESSION['session_id'];
 
 // Obtener respuestas del cuestionario
-$result = $mysqli->query("SELECT p.nivel, p.necesidad, p.descripcion, r.respuesta FROM respuestas r JOIN preguntas p ON r.pregunta_id = p.id WHERE r.session_id = '$session_id'");
+$result = $mysqli->query("SELECT p.nivel, p.nivel_descripcion, p.necesidad, p.descripcion, p.explicacion, p.tips, r.respuesta 
+                          FROM respuestas r 
+                          JOIN preguntas p ON r.pregunta_id = p.id 
+                          WHERE r.session_id = '$session_id'");
 $respuestas = $result->fetch_all(MYSQLI_ASSOC);
 
 // Verificar si se obtuvieron respuestas
@@ -19,31 +22,34 @@ if (empty($respuestas)) {
 }
 
 // Obtener el nivel actual basado en las respuestas "No"
-$query_nivel = "
-    SELECT p.nivel, COUNT(*) as count
-    FROM respuestas r
-    JOIN preguntas p ON r.pregunta_id = p.id
-    WHERE r.session_id = '$session_id' AND r.respuesta = 'No'
-    GROUP BY p.nivel
-    HAVING count >= 2
-    ORDER BY FIELD(p.nivel, 'FUNDAMENTAL', 'BASICO', 'AVANZADO', 'DIFERENCIAL'), count DESC
-    LIMIT 1
-";
-$result_nivel = $mysqli->query($query_nivel);
-if ($result_nivel->num_rows > 0) {
-    $nivel_actual = $result_nivel->fetch_assoc()['nivel'];
-} else {
-    $nivel_actual = 'FUNDAMENTAL';
-}
+$niveles = ['FUNDAMENTAL', 'BASICO', 'AVANZADO', 'DIFERENCIAL'];
+$nivel_actual = 'FUNDAMENTAL'; // Nivel por defecto
 
-// Encontrar el área más importante (el item del cuestionario más alto marcado como "No")
-$areas_importantes = [];
-foreach ($respuestas as $respuesta) {
-    if ($respuesta['respuesta'] === 'No') {
-        $areas_importantes[] = $respuesta;
+foreach ($niveles as $nivel) {
+    $count = 0;
+    foreach ($respuestas as $respuesta) {
+        if ($respuesta['nivel'] == $nivel && $respuesta['respuesta'] == 'No') {
+            $count++;
+        }
+        if ($count >= 2) {
+            $nivel_actual = $nivel;
+            break 2;
+        }
     }
 }
-$area_mas_importante = !empty($areas_importantes) ? $areas_importantes[0] : ['necesidad' => 'No se encontraron áreas importantes', 'descripcion' => 'No hay áreas identificadas como más importantes en este momento.'];
+
+// Encontrar la necesidad vital (la primera necesidad marcada como "No")
+$necesidad_vital = null;
+foreach ($respuestas as $respuesta) {
+    if ($respuesta['respuesta'] == 'No') {
+        $necesidad_vital = $respuesta;
+        break;
+    }
+}
+
+if (!$necesidad_vital) {
+    die("No se encontró ninguna necesidad vital en las respuestas.");
+}
 
 $mysqli->close();
 ?>
@@ -103,6 +109,10 @@ $mysqli->close();
             margin-bottom: 10px;
         }
 
+        .panel p {
+            color: black; /* Asegurar que los párrafos sean negros */
+        }
+
         .active + .panel {
             display: block;
         }
@@ -123,26 +133,23 @@ $mysqli->close();
     <div class="diagnostico-container">
         <h1>Diagnóstico FarmaCheck</h1>
         <p>Fecha <?php echo date('j/n/Y'); ?></p>
-        <p>Nisi et laborum sint enim dolor culpa culpa nulla in aute ea aliqua velit. Elit ad ut reprehenderit ad do occaecat labore eu laboris pariatur eu laborum amet minim. Cupidatat enim laboris ex eiusmod ut ipsum irure e</p>
         
         <button class="accordion" onclick="toggleAccordion(this)">El nivel actual de tu farmacia</button>
         <div class="panel">
             <img src="src/images/<?php echo strtoupper($nivel_actual); ?>.png" alt="Pirámide de Nivel">
-            <p>Tu farmacia está en nivel de lo <?php echo $nivel_actual; ?>.</p>
+            <p><?php echo $necesidad_vital['nivel_descripcion']; ?></p>
         </div>
 
         <button class="accordion" onclick="toggleAccordion(this)">El área más importante</button>
         <div class="panel">
-            <p><?php echo htmlspecialchars($area_mas_importante['necesidad']); ?></p>
-            <p><?php echo htmlspecialchars($area_mas_importante['descripcion']); ?></p>
+            <p><?php echo htmlspecialchars($necesidad_vital['necesidad']); ?></p>
+            <p><?php echo htmlspecialchars($necesidad_vital['explicacion']); ?></p>
         </div>
 
         <button class="accordion" onclick="toggleAccordion(this)">Tips para mejorar desde ya</button>
         <div class="panel">
             <ul>
-                <?php foreach ($areas_importantes as $area): ?>
-                    <li><?php echo htmlspecialchars($area['necesidad']) . ': ' . htmlspecialchars($area['descripcion']); ?></li>
-                <?php endforeach; ?>
+                <li><?php echo htmlspecialchars($necesidad_vital['tips']); ?></li>
             </ul>
         </div>
 
