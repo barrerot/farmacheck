@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$mysqli = new mysqli('localhost', 'root', '', 'farmacia');
+$mysqli = new mysqli('localhost', 'carlos_farmacheck', 'AZS12olp..', 'carlos_farmacheck');
 
 if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);

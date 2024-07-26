@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$mysqli = new mysqli('localhost', 'root', '', 'farmacia');
+$mysqli = new mysqli('localhost', 'carlos_farmacheck', 'AZS12olp..', 'carlos_farmacheck');
 
 if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);
@@ -26,17 +26,23 @@ $query_nivel = "
     WHERE r.session_id = '$session_id' AND r.respuesta = 'No'
     GROUP BY p.nivel
     HAVING count >= 2
-    ORDER BY FIELD(p.nivel, 'Fundamental', 'Básico', 'Avanzado', 'Diferencial'), count DESC
+    ORDER BY FIELD(p.nivel, 'FUNDAMENTAL', 'BASICO', 'AVANZADO', 'DIFERENCIAL'), count DESC
     LIMIT 1
 ";
 $result_nivel = $mysqli->query($query_nivel);
 if ($result_nivel->num_rows > 0) {
     $nivel_actual = $result_nivel->fetch_assoc()['nivel'];
 } else {
-    $nivel_actual = 'Fundamental';
+    $nivel_actual = 'FUNDAMENTAL';
 }
 
 // Encontrar el área más importante (el item del cuestionario más alto marcado como "No")
+$areas_importantes = [];
+foreach ($respuestas as $respuesta) {
+    if ($respuesta['respuesta'] === 'No') {
+        $areas_importantes[] = $respuesta;
+    }
+}
 $area_mas_importante = !empty($areas_importantes) ? $areas_importantes[0] : ['necesidad' => 'No se encontraron áreas importantes', 'descripcion' => 'No hay áreas identificadas como más importantes en este momento.'];
 
 $mysqli->close();
@@ -121,7 +127,7 @@ $mysqli->close();
         
         <button class="accordion" onclick="toggleAccordion(this)">El nivel actual de tu farmacia</button>
         <div class="panel">
-            <img src="src/images/<?php echo strtolower($nivel_actual); ?>.png" alt="Pirámide de Nivel">
+            <img src="src/images/<?php echo strtoupper($nivel_actual); ?>.png" alt="Pirámide de Nivel">
             <p>Tu farmacia está en nivel de lo <?php echo $nivel_actual; ?>.</p>
         </div>
 

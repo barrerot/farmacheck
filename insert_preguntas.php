@@ -33,7 +33,7 @@ foreach ($sheet->getRowIterator() as $row) {
     }
 }
 
-$mysqli = new mysqli('localhost', 'root', '', 'farmacia');
+$mysqli = new mysqli('localhost', 'carlos_farmacheck', 'AZS12olp..', 'carlos_farmacheck');
 
 foreach ($questions as $question) {
     $stmt = $mysqli->prepare("INSERT INTO preguntas (nivel, necesidad, descripcion) VALUES (?, ?, ?)");
