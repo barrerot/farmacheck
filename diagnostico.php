@@ -88,7 +88,7 @@ $mysqli->close();
         .panel {
             display: none;
             background-color: white;
-            color: black;
+            color: black; /* Asegurar que el texto es negro */
             overflow: hidden;
             padding: 15px;
             border-radius: 5px;
@@ -126,23 +126,23 @@ $mysqli->close();
         <div class="panel">
             <?php if ($nivel_actual !== 'Nivel insuficiente para determinar'): ?>
                 <img src="src/images/<?php echo strtolower($nivel_actual); ?>.png" alt="Pirámide de Nivel">
-                <p>Tu farmacia está en nivel de lo <?php echo $nivel_actual; ?>.</p>
+                <p style="color: black;">Tu farmacia está en nivel de lo <?php echo $nivel_actual; ?>.</p>
             <?php else: ?>
-                <p><?php echo $nivel_actual; ?></p>
+                <p style="color: black;"><?php echo $nivel_actual; ?></p>
             <?php endif; ?>
         </div>
 
         <button class="accordion" onclick="toggleAccordion(this)">El área más importante</button>
         <div class="panel">
-            <p><?php echo htmlspecialchars($area_mas_importante['necesidad']); ?></p>
-            <p><?php echo htmlspecialchars($area_mas_importante['descripcion']); ?></p>
+            <p style="color: black;"><?php echo htmlspecialchars($area_mas_importante['necesidad']); ?></p>
+            <p style="color: black;"><?php echo htmlspecialchars($area_mas_importante['descripcion']); ?></p>
         </div>
 
         <button class="accordion" onclick="toggleAccordion(this)">Tips para mejorar desde ya</button>
         <div class="panel">
-            <ul>
+            <ul style="color: black;">
                 <?php foreach ($areas_importantes as $area): ?>
-                    <li><?php echo htmlspecialchars($area['necesidad']) . ': ' . htmlspecialchars($area['descripcion']); ?></li>
+                    <li style="color: black;"><?php echo htmlspecialchars($area['necesidad']) . ': ' . htmlspecialchars($area['descripcion']); ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
