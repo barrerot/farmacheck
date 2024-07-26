@@ -18,25 +18,22 @@ if (empty($respuestas)) {
     die("No se encontraron respuestas para la sesión proporcionada.");
 }
 
-// Determinar el nivel actual y el área más importante
-$niveles = ['Fundamental', 'Básico', 'Avanzado', 'Diferencial'];
-$nivel_actual = 'Fundamental';
-$areas_importantes = [];
-$contador_nos = 0;
-
-foreach ($respuestas as $respuesta) {
-    if ($respuesta['respuesta'] === 'No') {
-        $areas_importantes[] = $respuesta;
-        $contador_nos++;
-    }
-    if ($respuesta['respuesta'] === 'No' && in_array($respuesta['nivel'], $niveles)) {
-        $nivel_actual = $respuesta['nivel'];
-    }
-}
-
-// Asegurarse de que hay al menos dos respuestas con "No" para mostrar el nivel
-if ($contador_nos < 2) {
-    $nivel_actual = 'Nivel insuficiente para determinar';
+// Obtener el nivel actual basado en las respuestas "No"
+$query_nivel = "
+    SELECT p.nivel, COUNT(*) as count
+    FROM respuestas r
+    JOIN preguntas p ON r.pregunta_id = p.id
+    WHERE r.session_id = '$session_id' AND r.respuesta = 'No'
+    GROUP BY p.nivel
+    HAVING count >= 2
+    ORDER BY FIELD(p.nivel, 'Fundamental', 'Básico', 'Avanzado', 'Diferencial'), count DESC
+    LIMIT 1
+";
+$result_nivel = $mysqli->query($query_nivel);
+if ($result_nivel->num_rows > 0) {
+    $nivel_actual = $result_nivel->fetch_assoc()['nivel'];
+} else {
+    $nivel_actual = 'Fundamental';
 }
 
 // Encontrar el área más importante (el item del cuestionario más alto marcado como "No")
@@ -124,25 +121,21 @@ $mysqli->close();
         
         <button class="accordion" onclick="toggleAccordion(this)">El nivel actual de tu farmacia</button>
         <div class="panel">
-            <?php if ($nivel_actual !== 'Nivel insuficiente para determinar'): ?>
-                <img src="src/images/<?php echo strtolower($nivel_actual); ?>.png" alt="Pirámide de Nivel">
-                <p style="color: black;">Tu farmacia está en nivel de lo <?php echo $nivel_actual; ?>.</p>
-            <?php else: ?>
-                <p style="color: black;"><?php echo $nivel_actual; ?></p>
-            <?php endif; ?>
+            <img src="src/images/<?php echo strtolower($nivel_actual); ?>.png" alt="Pirámide de Nivel">
+            <p>Tu farmacia está en nivel de lo <?php echo $nivel_actual; ?>.</p>
         </div>
 
         <button class="accordion" onclick="toggleAccordion(this)">El área más importante</button>
         <div class="panel">
-            <p style="color: black;"><?php echo htmlspecialchars($area_mas_importante['necesidad']); ?></p>
-            <p style="color: black;"><?php echo htmlspecialchars($area_mas_importante['descripcion']); ?></p>
+            <p><?php echo htmlspecialchars($area_mas_importante['necesidad']); ?></p>
+            <p><?php echo htmlspecialchars($area_mas_importante['descripcion']); ?></p>
         </div>
 
         <button class="accordion" onclick="toggleAccordion(this)">Tips para mejorar desde ya</button>
         <div class="panel">
-            <ul style="color: black;">
+            <ul>
                 <?php foreach ($areas_importantes as $area): ?>
-                    <li style="color: black;"><?php echo htmlspecialchars($area['necesidad']) . ': ' . htmlspecialchars($area['descripcion']); ?></li>
+                    <li><?php echo htmlspecialchars($area['necesidad']) . ': ' . htmlspecialchars($area['descripcion']); ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>

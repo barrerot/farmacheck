@@ -17,17 +17,9 @@ if (!isset($_SESSION['session_id'])) {
 
 $session_id = $_SESSION['session_id'];
 
-// Obtener todas las preguntas
-$result = $mysqli->query("SELECT id, necesidad, descripcion FROM preguntas");
+// Obtener todas las preguntas en el orden en que están en la base de datos
+$result = $mysqli->query("SELECT id, necesidad, descripcion FROM preguntas ORDER BY id ASC");
 $preguntas = $result->fetch_all(MYSQLI_ASSOC);
-
-// Barajar las preguntas si es la primera vez
-if (!isset($_SESSION['preguntas_orden'])) {
-    shuffle($preguntas);
-    $_SESSION['preguntas_orden'] = $preguntas;
-} else {
-    $preguntas = $_SESSION['preguntas_orden'];
-}
 
 // Calcular el progreso
 $pregunta_num = isset($_GET['num']) ? (int)$_GET['num'] : 1;
@@ -52,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: diagnostico.php');
         exit();
     } else {
-        $next_pregunta_num = $pregunta_num + 1;
-        echo "<script>setTimeout(function() { window.location.href = 'pregunta.php?num=$next_pregunta_num'; }, 1000);</script>";
+        header('Refresh: 0.5; URL=pregunta.php?num=' . ($pregunta_num + 1));
+        exit();
     }
 }
 
@@ -77,16 +69,6 @@ $pregunta_actual = $preguntas[$pregunta_num - 1];
         .option:hover {
             background-color: #e0e0e0;
         }
-
-        .fade-out {
-            opacity: 0;
-            transition: opacity 1s ease-out;
-        }
-
-        .fade-in {
-            opacity: 1;
-            transition: opacity 1s ease-in;
-        }
     </style>
     <script>
         function selectOption(button, value) {
@@ -94,23 +76,14 @@ $pregunta_actual = $preguntas[$pregunta_num - 1];
             options.forEach(option => option.classList.remove('selected'));
             button.classList.add('selected');
             document.getElementById('respuesta').value = value;
-            
-            const content = document.querySelector('.content');
-            content.classList.add('fade-out');
-
             setTimeout(() => {
                 document.getElementById('questionForm').submit();
-            }, 1000); // 1 second delay for the fade-out effect
+            }, 500); // 0.5 second delay for transitioning to the next question
         }
-
-        window.addEventListener('load', function() {
-            const container = document.querySelector('.container');
-            container.classList.add('fade-in');
-        });
     </script>
 </head>
 <body>
-    <div class="container fade-in">
+    <div class="container">
         <div class="header">
             <h2>PREGUNTA <?php echo $pregunta_num; ?> de <?php echo $total_preguntas; ?></h2>
             <div class="progress-bar-container">
