@@ -24,6 +24,7 @@ if (empty($respuestas)) {
 // Obtener el nivel actual basado en las respuestas "No"
 $niveles = ['FUNDAMENTAL', 'BASICO', 'AVANZADO', 'DIFERENCIAL'];
 $nivel_actual = 'FUNDAMENTAL'; // Nivel por defecto
+$nivel_descripcion = '';
 
 foreach ($niveles as $nivel) {
     $count = 0;
@@ -33,6 +34,7 @@ foreach ($niveles as $nivel) {
         }
         if ($count >= 2) {
             $nivel_actual = $nivel;
+            $nivel_descripcion = $respuesta['nivel_descripcion'];
             break 2;
         }
     }
@@ -116,6 +118,46 @@ $mysqli->close();
         .active + .panel {
             display: block;
         }
+
+        .email-form {
+            background-color: white;
+            color: black;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .email-form input[type="email"] {
+            padding: 10px;
+            margin-top: 10px;
+            width: 80%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .email-form button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #00d1a1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .email-form button:hover {
+            background-color: #00a97f;
+        }
+
+        .email-form p {
+            color: black; /* Asegurar que el texto sea negro */
+        }
+
+        .email-form h2 {
+            color: black; /* Asegurar que el texto sea negro */
+        }
     </style>
     <script>
         function toggleAccordion(element) {
@@ -137,7 +179,7 @@ $mysqli->close();
         <button class="accordion" onclick="toggleAccordion(this)">El nivel actual de tu farmacia</button>
         <div class="panel">
             <img src="src/images/<?php echo strtoupper($nivel_actual); ?>.png" alt="Pirámide de Nivel">
-            <p><?php echo $necesidad_vital['nivel_descripcion']; ?></p>
+            <p><?php echo $nivel_descripcion; ?></p>
         </div>
 
         <button class="accordion" onclick="toggleAccordion(this)">El área más importante</button>
@@ -156,6 +198,16 @@ $mysqli->close();
         <button class="accordion" onclick="toggleAccordion(this)">Otras recomendaciones</button>
         <div class="panel">
             <iframe src="https://farmacias.danielsegarra.com/masterclasspiramide" width="100%" height="400" style="border: none;"></iframe>
+        </div>
+        
+        <div class="email-form">
+            <h2>¿Quieres recibir este diagnóstico en tu correo electrónico?</h2>
+            <p>Para obtener una copia de tu diagnóstico directamente en tu bandeja de entrada, simplemente introduce tu dirección de correo electrónico y haz clic en "Enviar".</p>
+            <form action="enviar_diagnostico.php" method="post">
+                <input type="hidden" name="session_id" value="<?php echo $session_id; ?>">
+                <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
     </div>
 </body>

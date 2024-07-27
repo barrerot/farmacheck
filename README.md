@@ -1,4 +1,3 @@
-
 # FarmaCheck
 
 FarmaCheck es una aplicación web que permite a las farmacias evaluar su estado actual y recibir recomendaciones personalizadas para mejorar sus operaciones y servicios. 
@@ -41,11 +40,11 @@ FarmaCheck es una aplicación web que permite a las farmacias evaluar su estado 
 
 4. Configura la base de datos MySQL:
 
-    - Crea una base de datos llamada `farmacia`.
+    - Crea una base de datos llamada `farmacheck`.
     - Importa el esquema de la base de datos desde el archivo `schema.sql` (asegúrate de tener este archivo con la estructura de tus tablas).
 
     ```bash
-    mysql -u root -p farmacia < schema.sql
+    mysql -u root -p farmacheck < schema.sql
     ```
 
 5. Configura las credenciales de la base de datos en los archivos PHP:
@@ -53,7 +52,7 @@ FarmaCheck es una aplicación web que permite a las farmacias evaluar su estado 
     Asegúrate de que los archivos PHP (`pregunta.php`, `diagnostico.php`, etc.) contengan las credenciales correctas para conectarse a la base de datos:
 
     ```php
-    $mysqli = new mysqli('localhost', 'root', '', 'farmacia');
+    $mysqli = new mysqli('localhost', 'root', '', 'farmacheck');
     ```
 
 6. Coloca los archivos en el directorio público de tu servidor web (por ejemplo, `htdocs` para XAMPP).
