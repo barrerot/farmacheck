@@ -1,7 +1,12 @@
 <?php
+require 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start();
 
-$mysqli = new mysqli('localhost', 'carlos_farmacheck', 'AZS12olp..', 'carlos_farmacheck');
+$mysqli = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
 
 if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);

@@ -1,9 +1,11 @@
 <?php
 require 'vendor/autoload.php';
-
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-$mysqli = new mysqli('localhost', 'carlos_farmacheck', 'AZS12olp..', 'carlos_farmacheck');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$mysqli = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
 
 if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);
@@ -19,7 +21,7 @@ $mysqli->query("TRUNCATE TABLE preguntas");
 $mysqli->query("SET FOREIGN_KEY_CHECKS=1");
 
 // Cargar el archivo Excel
-$filePath = __DIR__ . './necesidades.xlsx'; // Asegúrate de que el archivo Excel está en el mismo nivel que este script
+$filePath = __DIR__ . '/necesidades.xlsx'; // Asegúrate de que el archivo Excel está en el mismo nivel que este script
 $spreadsheet = IOFactory::load($filePath);
 $worksheet = $spreadsheet->getActiveSheet();
 

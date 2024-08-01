@@ -1,6 +1,7 @@
 <?php
 require 'vendor/autoload.php';
-require 'generar_diagnostico.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -16,22 +17,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail = new PHPMailer(true);
 
     try {
-        // Configuración del servidor
+        // Configuración del servidor SMTP
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Configura tu servidor SMTP
+        $mail->Host = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Username = 'barrerot@gmail.com'; // Configura tu usuario SMTP
-        $mail->Password = 'zwzq khcv vbrs uwch'; // Configura tu contraseña SMTP actualizada
+        $mail->Username = $_ENV['SMTP_USER'];
+        $mail->Password = $_ENV['SMTP_PASS'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Port = $_ENV['SMTP_PORT'];
 
         // Remitente y destinatario
-        $mail->setFrom('barrerot@gmail.com', 'FarmaCheck');
-        $mail->addAddress($email);
+        $mail->setFrom('from@example.com', 'FarmaCheck'); // Ajusta el remitente según sea necesario
+        $mail->addAddress($email); // Usar el correo proporcionado por el usuario
 
         // Contenido del correo
         $mail->isHTML(true);
-        $mail->Subject = '=?UTF-8?B?' . base64_encode('Diagnóstico de tu farmacia') . '?=';
+        $mail->CharSet = PHPMailer::CHARSET_UTF8;
+        $mail->Subject = 'Aquí está el diagnóstico de tu farmacia';
         $mail->Body    = $html;
 
         // Adjuntar la imagen del nivel
