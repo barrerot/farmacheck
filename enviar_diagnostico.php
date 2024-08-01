@@ -19,6 +19,9 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = $_ENV['SMTP_PORT'];
 
+    // Configuración de codificación y charset
+    $mail->CharSet = PHPMailer::CHARSET_UTF8;
+
     // Configuración del correo
     $mail->setFrom('from@example.com', 'Mailer');
     $mail->addAddress('joe@example.net', 'Joe User'); // Añadir destinatarios
