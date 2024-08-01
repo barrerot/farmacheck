@@ -1,47 +1,35 @@
 <?php
 require 'vendor/autoload.php';
-require 'generar_diagnostico.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $session_id = $_POST['session_id'];
-    $email = $_POST['email'];
+require 'vendor/autoload.php';
 
-    $diagnostico = generar_diagnostico_html($session_id);
-    $html = $diagnostico['html'];
-    $nivel_actual = $diagnostico['nivel_actual'];
+$mail = new PHPMailer(true);
+try {
+    // Configuración del servidor SMTP
+    $mail->isSMTP();
+    $mail->Host = $_ENV['SMTP_HOST'];
+    $mail->SMTPAuth = true;
+    $mail->Username = $_ENV['SMTP_USER'];
+    $mail->Password = $_ENV['SMTP_PASS'];
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = $_ENV['SMTP_PORT'];
 
-    $mail = new PHPMailer(true);
+    // Configuración del correo
+    $mail->setFrom('from@example.com', 'Mailer');
+    $mail->addAddress('joe@example.net', 'Joe User'); // Añadir destinatarios
 
-    try {
-        // Configuración del servidor
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Configura tu servidor SMTP
-        $mail->SMTPAuth = true;
-        $mail->Username = 'barrerot@gmail.com'; // Configura tu usuario SMTP
-        $mail->Password = 'zwzq khcv vbrs uwch'; // Configura tu contraseña SMTP actualizada
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+    $mail->isHTML(true);
+    $mail->Subject = 'Aquí está el diagnóstico de tu farmacia';
+    $mail->Body    = 'Este es el cuerpo del correo en <b>HTML</b>';
+    $mail->AltBody = 'Este es el cuerpo del correo en texto plano para clientes de correo no HTML';
 
-        // Remitente y destinatario
-        $mail->setFrom('barrerot@gmail.com', 'FarmaCheck');
-        $mail->addAddress($email);
-
-        // Contenido del correo
-        $mail->isHTML(true);
-        $mail->Subject = '=?UTF-8?B?' . base64_encode('Diagnóstico de tu farmacia') . '?=';
-        $mail->Body    = $html;
-
-        // Adjuntar la imagen del nivel
-        $nivel_imagen = 'src/images/' . strtoupper($nivel_actual) . '.png';
-        $mail->addEmbeddedImage($nivel_imagen, 'nivel_imagen');
-
-        $mail->send();
-        echo 'El diagnóstico ha sido enviado por correo electrónico.';
-    } catch (Exception $e) {
-        echo "Error al enviar el correo: {$mail->ErrorInfo}";
-    }
+    $mail->send();
+    echo 'Mensaje enviado';
+} catch (Exception $e) {
+    echo "No se pudo enviar el mensaje. Mailer Error: {$mail->ErrorInfo}";
 }
-?>
