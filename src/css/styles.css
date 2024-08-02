@@ -226,10 +226,26 @@ form button:hover {
 }
 
 
-.image {
+.logo-cxlab {
     display: block;
-    max-width: 259px; /* Se adapta al ancho original proporcionado */
-    max-height: 202px; /* Se adapta a la altura original proporcionada */
+    max-width: 100px; /* Se mantiene la imagen en un tamaño adecuado */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 0 auto 20px auto; /* Centra la imagen y añade margen inferior */
+}
+
+.logo-farmacheck {
+    display: block;
+    max-width: 259px; /* Ancho según las especificaciones proporcionadas */
+    max-height: 47px; /* Altura según las especificaciones proporcionadas */
+    width: 100%; /* Asegura que la imagen se adapte al contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 0 auto; /* Centra la imagen */
+}
+
+.piramide-image {
+    display: block;
+    max-width: 259px; /* Ancho según las especificaciones proporcionadas */
+    max-height: 202px; /* Altura según las especificaciones proporcionadas */
     width: 100%; /* Asegura que la imagen se adapte al contenedor */
     height: auto; /* Mantiene la proporción de la imagen */
     margin: 0 auto 20px auto; /* Centra la imagen y añade margen inferior */
