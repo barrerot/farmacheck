@@ -24,6 +24,14 @@ body {
     /*border-radius: 10px;*/
     color: #2A3863; /* Color de texto por defecto */
 }
+.inicio_container {
+    width: 90%;
+    max-width: 400px;
+    background-color: #283863;
+    padding: 20px;
+    /*border-radius: 10px;*/
+    color: #2A3863; /* Color de texto por defecto */
+}
 
 h1, h2, h3, p, a, label, button {
     color: #2A3863; /* Color de texto por defecto */
@@ -59,7 +67,7 @@ h1, h2, h3, p, a, label, button {
 }
 
 .start-button {
-    display: inline-block;
+    display: block; /* Cambia a block para ocupar todo el ancho */
     background-color: #00d1a1;
     color: #ffffff;
     border: none;
@@ -69,6 +77,8 @@ h1, h2, h3, p, a, label, button {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%; /* Asegura que el botón ocupe el 100% del ancho disponible */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
 }
 
 .start-button:hover {
