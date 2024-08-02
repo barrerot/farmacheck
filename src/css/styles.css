@@ -24,14 +24,58 @@ body {
     color: #2A3863; /* Color de texto por defecto */
 }
 
+/* Estilos específicos para la página de inicio */
 .inicio_container {
     width: 90%;
-    max-width: 400px;
+    max-width: 600px; /* Ajusta este valor según sea necesario */
     background-color: #283863;
     padding: 20px;
     color: #ffffff; /* Color de texto para contraste */
+    text-align: center; /* Asegura el centrado del texto */
 }
 
+.inicio_container .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+}
+
+.inicio_container .logo-cxlab,
+.inicio_container .logo-farmacheck,
+.inicio_container .piramide-image {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Asegura que las imágenes se comporten como elementos de bloque */
+}
+
+.inicio_container .content h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.inicio_container .start-button {
+    display: inline-block;
+    background-color: #00d1a1;
+    color: #ffffff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+    box-sizing: border-box;
+}
+
+.inicio_container .start-button:hover {
+    background-color: #00a97f;
+}
+
+/* Estilos globales */
 h1, h2, h3, p, a, label, button {
     color: #2A3863; /* Color de texto por defecto */
 }
@@ -50,11 +94,6 @@ h1, h2, h3, p, a, label, button {
     color: #8E94A0;
 }
 
-.content h1 {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
 .content img {
     width: 100%;
     max-width: 200px;
@@ -63,25 +102,6 @@ h1, h2, h3, p, a, label, button {
 
 .content p {
     color: #8C8A8A;
-}
-
-.start-button {
-    display: block;
-    background-color: #00d1a1;
-    color: #ffffff;
-    border: none;
-    padding: 15px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.start-button:hover {
-    background-color: #00a97f;
 }
 
 .accordion {
@@ -223,30 +243,4 @@ form button:hover {
     top: 50%;
     transform: translateY(-50%);
     color: #16191E;
-}
-
-
-.logo-cxlab {
-    display: block;
-    max-width: 100px; /* Se mantiene la imagen en un tamaño adecuado */
-    height: auto; /* Mantiene la proporción de la imagen */
-    margin: 0 auto 20px auto; /* Centra la imagen y añade margen inferior */
-}
-
-.logo-farmacheck {
-    position: absolute; 
-    top: 83px; 
-    left: 61px; 
-    width: 259px; 
-    height: 47px; 
-    border-radius: 0px; 
-  }
-
-.piramide-image {
-    display: block;
-    max-width: 259px; /* Ancho según las especificaciones proporcionadas */
-    max-height: 202px; /* Altura según las especificaciones proporcionadas */
-    width: 100%; /* Asegura que la imagen se adapte al contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-    margin: 0 auto 20px auto; /* Centra la imagen y añade margen inferior */
 }
