@@ -224,3 +224,13 @@ form button:hover {
     transform: translateY(-50%);
     color: #16191E;
 }
+
+
+.image {
+    display: block;
+    max-width: 259px; /* Se adapta al ancho original proporcionado */
+    max-height: 202px; /* Se adapta a la altura original proporcionada */
+    width: 100%; /* Asegura que la imagen se adapte al contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 0 auto 20px auto; /* Centra la imagen y añade margen inferior */
+}
