@@ -21,16 +21,15 @@ body {
     max-width: 400px;
     background-color: #ffffff;
     padding: 20px;
-    /*border-radius: 10px;*/
     color: #2A3863; /* Color de texto por defecto */
 }
+
 .inicio_container {
     width: 90%;
     max-width: 400px;
     background-color: #283863;
     padding: 20px;
-    /*border-radius: 10px;*/
-    color: #2A3863; /* Color de texto por defecto */
+    color: #ffffff; /* Color de texto para contraste */
 }
 
 h1, h2, h3, p, a, label, button {
@@ -67,7 +66,7 @@ h1, h2, h3, p, a, label, button {
 }
 
 .start-button {
-    display: block; /* Cambia a block para ocupar todo el ancho */
+    display: block;
     background-color: #00d1a1;
     color: #ffffff;
     border: none;
@@ -77,8 +76,8 @@ h1, h2, h3, p, a, label, button {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%; /* Asegura que el botón ocupe el 100% del ancho disponible */
-    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .start-button:hover {
@@ -106,7 +105,7 @@ h1, h2, h3, p, a, label, button {
 
 .panel {
     display: none;
-    background-color: #333; /* Fondo ligeramente más claro para los paneles */
+    background-color: #333;
     overflow: hidden;
     padding: 0 15px;
     border-radius: 5px;
@@ -128,7 +127,7 @@ button.option {
     cursor: pointer;
     transition: background-color 0.3s;
     text-align: left;
-    color: #2A3863; /* Color de texto oscuro para mejor legibilidad */
+    color: #2A3863;
 }
 
 button.option:hover {
@@ -186,7 +185,7 @@ form input[type="email"] {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    color: #333; /* Color de texto oscuro para mejor legibilidad */
+    color: #333;
 }
 
 form button {

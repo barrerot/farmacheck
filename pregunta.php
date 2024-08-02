@@ -1,10 +1,9 @@
 <?php
 require 'vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-
-session_start();
 
 $mysqli = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
 
@@ -13,6 +12,7 @@ if ($mysqli->connect_error) {
 }
 
 // Verificar si la sesión existe, si no, crear una nueva
+session_start();
 if (!isset($_SESSION['session_id'])) {
     $_SESSION['session_id'] = bin2hex(random_bytes(16));
     $stmt = $mysqli->prepare("INSERT INTO sesiones (session_id, completado) VALUES (?, 0)");
@@ -34,8 +34,9 @@ $preguntas = $result->fetch_all(MYSQLI_ASSOC);
 // Calcular el progreso
 $pregunta_num = isset($_GET['num']) ? (int)$_GET['num'] : 1;
 $total_preguntas = count($preguntas);
-$progreso = round(($pregunta_num - 1) / $total_preguntas * 100);
+$progreso = ($total_preguntas > 0) ? round(($pregunta_num - 1) / $total_preguntas * 100) : 0;
 
+// Procesar la respuesta del formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $respuesta = $_POST['respuesta'];
     $pregunta_id = $_POST['pregunta_id'];
@@ -49,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error en la preparación de la declaración: " . $mysqli->error);
     }
 
+    // Redirigir a la siguiente pregunta o al diagnóstico
     if ($pregunta_num >= $total_preguntas) {
         $stmt = $mysqli->prepare("UPDATE sesiones SET completado = 1 WHERE session_id = ?");
         if ($stmt) {
@@ -59,13 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: diagnostico.php');
         exit();
     } else {
-        header('Refresh: 0.5; URL=pregunta.php?num=' . ($pregunta_num + 1));
+        header('Location: pregunta.php?num=' . ($pregunta_num + 1));
         exit();
     }
 }
 
 $pregunta_actual = $preguntas[$pregunta_num - 1];
-
 ?>
 
 <!DOCTYPE html>
@@ -102,9 +103,7 @@ $pregunta_actual = $preguntas[$pregunta_num - 1];
         <div class="header">
             <h2>PREGUNTA <?php echo $pregunta_num; ?> de <?php echo $total_preguntas; ?></h2>
             <div class="progress-bar-container">
-                <div class="progress-bar">
-                    <div class="progress" style="width: <?php echo $progreso; ?>%;"></div>
-                </div>
+                <div class="progress-bar" style="width: <?php echo $progreso; ?>%;"></div>
                 <div class="progress-percentage"><?php echo $progreso; ?>%</div>
             </div>
         </div>
