@@ -234,13 +234,13 @@ form button:hover {
 }
 
 .logo-farmacheck {
-    display: block;
-    max-width: 259px; /* Ancho según las especificaciones proporcionadas */
-    max-height: 47px; /* Altura según las especificaciones proporcionadas */
-    width: 100%; /* Asegura que la imagen se adapte al contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-    margin: 0 auto; /* Centra la imagen */
-}
+    position: absolute; 
+    top: 83px; 
+    left: 61px; 
+    width: 259px; 
+    height: 47px; 
+    border-radius: 0px; 
+  }
 
 .piramide-image {
     display: block;
