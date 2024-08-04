@@ -1,0 +1,121 @@
+.image-80-icon,
+.logo-cxlab-blanco {
+  position: absolute;
+  top: 0;
+  left: 82.7px;
+  width: 62.2px;
+  height: 35px;
+  object-fit: cover;
+}
+.image-80-icon {
+  top: 35px;
+  left: 0;
+  width: 227.6px;
+  height: 57.5px;
+  z-index: 1;
+}
+.logo-cxlab-blanco-parent {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.content,
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.content {
+  height: 92.5px;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.main {
+  align-self: stretch;
+  padding: 0 54px 3.2px 53px;
+}
+.texto-inicio {
+  flex: 1;
+  position: relative;
+  line-height: 120%;
+}
+.header {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 29px 6.6px;
+}
+.empty-icon {
+  align-self: stretch;
+  height: 307px;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.empezar {
+  position: relative;
+  font-size: var(--farmacheck-1-desktop-body-highlight-bold-size);
+  line-height: 28px;
+  display: inline-block;
+  font-family: var(--font-lexend);
+  color: #2b3963;
+  text-align: left;
+  min-width: 82px;
+}
+.arrow-right-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.arrow-right-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 2px 0 0;
+}
+.button-139,
+.pantalla-de-inicio {
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+}
+.button-139 {
+  cursor: pointer;
+  border: 0;
+  padding: 12px var(--padding-xl);
+  background-color: #99ffca;
+  align-self: stretch;
+  border-radius: var(--spacing-size-size-1);
+  flex-direction: row;
+  justify-content: center;
+  gap: 7px;
+}
+.pantalla-de-inicio {
+  width: 375px;
+  box-shadow: 0 3px 6px rgba(18, 15, 40, 0.12);
+  background-color: #323743;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 53.6px var(--padding-xl) 57.2px;
+  box-sizing: border-box;
+  gap: 14.3px;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  font-size: var(--farmacheck-1-desktop-body-highlight-bold-size);
+  color: #dee1e6;
+  font-family: var(--farmacheck-1-desktop-body-highlight-bold);
+}

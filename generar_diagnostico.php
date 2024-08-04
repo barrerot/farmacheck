@@ -2,7 +2,7 @@
 ini_set('memory_limit', '2048M'); // Aumenta el límite de memoria a 2GB
 
 function generar_diagnostico_html($session_id) {
-    $mysqli = new mysqli('localhost', 'carlos_farmacheck', 'AZS12olp..', 'carlos_farmacheck');
+    $mysqli = new mysqli('localhost', 'daniel_farmacheck', 'AZS12olp..', 'daniel_farmacheck');
 
     if ($mysqli->connect_error) {
         die("Error de conexión: " . $mysqli->connect_error);

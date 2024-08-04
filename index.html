@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FarmaCheck</title>
-    <link rel="stylesheet" href="src/css/styles.css">
-</head>
-<body>
-    <div class="inicio_container">
-        <div class="header">
-            <img src="src/images/logo.png" alt="Cx Lab" class="logo-cxlab">
-            <img src="src/images/Logo_farmaceck.png" alt="FarmaCheck" class="logo-farmacheck">
-            <img src="src/images/piramide.png" alt="Piramide" class="piramide-image">
-        </div>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="pantalla-de-inicio">
+      <section class="main">
         <div class="content">
-            <h1>Evalúa qué necesita ahora tu farmacia y ¡soluciónalo!</h1>
-            <a href="pregunta.php?num=1" class="start-button">Empezar →</a>
+          <div class="logo-cxlab-blanco-parent">
+            <img
+              class="logo-cxlab-blanco"
+              loading="lazy"
+              alt="Cx Lab logo"
+              src="./public/logo-cxlab-blanco@2x.png"
+            />
+            <img
+              class="image-80-icon"
+              alt="FarmaCheck logo"
+              src="./public/image-80@2x.png"
+            />
+          </div>
         </div>
+      </section>
+      <div class="header">
+        <b class="texto-inicio">
+          Evalúa qué necesita ahora tu farmacia y ¡soluciónalo!
+        </b>
+      </div>
+      <img class="empty-icon" alt="" src="./public/empty@2x.png" />
+      <button class="button-139" onclick="window.location.href='pregunta.php?num=1';">
+        <b class="empezar">Empezar</b>
+        <div class="arrow-right-wrapper">
+          <img class="arrow-right-icon" alt="" src="./public/arrow-right.svg" />
+        </div>
+      </button>
     </div>
-</body>
+  </body>
 </html>

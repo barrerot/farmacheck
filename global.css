@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-lexend: Lexend;
+  --farmacheck-1-desktop-body-highlight-bold: Montserrat;
+
+  /* font sizes */
+  --farmacheck-1-desktop-body-highlight-bold-size: 18px;
+
+  /* Spacing */
+  --spacing-size-size-1: 4px;
+
+  /* Paddings */
+  --padding-xl: 20px;
+}
