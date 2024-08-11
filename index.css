@@ -1,132 +1,106 @@
-.image-80-icon,
-.logo-cxlab-blanco {
+.icon {
   position: absolute;
-  top: 0;
-  left: 82.7px;
-  max-width: 100%;
-  height: auto;
+  top: 17px;
+  left: 8px;
+  width: 77px;
+  height: 37.9px;
   object-fit: cover;
 }
-
-.image-80-icon {
-  top: 35px;
-  left: 0;
-  width: 227.6px;
-  height: 57.5px;
-  z-index: 1;
-}
-
-.logo-cxlab-blanco-parent {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  margin: 0 !important;
-  top: 0;
-  right: 0;
-  left: 0;
-}
-
-.content,
-.main {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.content {
-  height: 92.5px;
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-}
-
-.main {
+.cabecera-azul {
   align-self: stretch;
-  padding: 0;
+  position: relative;
+  background-color: #16213a;
+  height: 72px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
-
-.texto-inicio {
-  flex: 1;
+.logo-farmacheck-fondo-claro-co {
+  position: absolute;
+  top: calc(50% - 25px);
+  left: calc(50% - 100px);
+  width: 200px;
+  height: 50.6px;
+  object-fit: cover;
+}
+.cabecera-azul1 {
+  width: 375px;
+  position: relative;
+  background-color: var(--color-white);
+  height: 72px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.averigua-qu-necesita {
+  align-self: stretch;
   position: relative;
   line-height: 120%;
 }
-
-.header {
-  align-self: stretch;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 0 29px 6.6px;
-}
-
-.empty-icon {
-  align-self: stretch;
-  height: 307px;
-  max-width: 100%;
+.contenido-child {
+  width: 351px;
+  position: relative;
+  border-radius: 4px;
+  height: 420px;
   overflow: hidden;
   flex-shrink: 0;
   object-fit: cover;
 }
-
 .empezar {
   position: relative;
-  font-size: var(--farmacheck-1-desktop-body-highlight-bold-size);
-  line-height: 28px;
-  display: inline-block;
-  font-family: var(--font-lexend);
-  color: #2b3963;
-  text-align: left;
-  min-width: 82px;
+  line-height: 120%;
 }
-
-.arrow-right-icon {
-  width: 24px;
-  height: 24px;
-  position: relative;
+.botn-base,
+.icono {
   overflow: hidden;
   flex-shrink: 0;
 }
-
-.arrow-right-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 2px 0 0;
+.icono {
+  width: 32px;
+  position: relative;
+  height: 32px;
 }
-
-.button-139,
-.pantalla-de-inicio {
+.botn-base {
+  align-self: stretch;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  background-color: #98ffca;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.botn-base-wrapper,
+.contenido,
+.iphone-8-1 {
+  background-color: var(--color-white);
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
-}
-
-.button-139 {
-  cursor: pointer;
-  border: 0;
-  padding: 12px var(--padding-xl);
-  background-color: #99ffca;
-  align-self: stretch;
-  border-radius: var(--spacing-size-size-1);
-  flex-direction: row;
-  justify-content: center;
-  gap: 7px;
-}
-
-.pantalla-de-inicio {
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 53.6px var(--padding-xl) 57.2px;
+  align-items: center;
+}
+.botn-base-wrapper {
+  width: 375px;
+  justify-content: center;
+  padding: 13px var(--padding-xs);
   box-sizing: border-box;
-  background-color: #323743;
-  color: #dee1e6;
-  font-family: var(--farmacheck-1-desktop-body-highlight-bold);
+  text-align: left;
+}
+.contenido,
+.iphone-8-1 {
+  justify-content: flex-start;
+}
+.contenido {
+  width: 375px;
+  padding: var(--padding-xs);
+  box-sizing: border-box;
+  gap: 20px;
+}
+.iphone-8-1 {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  font-size: var(--farmacheck-1-mobile-headings-heading-2-size);
+  color: var(--color-black);
+  font-family: var(--farmacheck-1-mobile-headings-heading-2);
 }

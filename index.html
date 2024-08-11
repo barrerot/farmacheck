@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <link rel="stylesheet" href="./index.107e7884.css">
+    <link rel="stylesheet" href="./index.03bddbc7.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
+    <style>
+        /* Asegúrate de que el enlace se vea como un botón */
+        a.boton-base {
+            text-decoration: none;   /* Elimina el subrayado */
+            color: inherit;          /* Mantiene el color del texto original */
+            display: flex;           /* Flexbox para alinear el texto y la flecha */
+            align-items: center;     /* Alinea verticalmente en el centro */
+            justify-content: center; /* Centra el contenido */
+            gap: 8px;                /* Espacio entre el texto y la flecha */
+        }
 
-    <link rel="stylesheet" href="./global.css" />
-    <link rel="stylesheet" href="./index.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap"
-    />
-  </head>
-  <body>
-    <div class="pantalla-de-inicio">
-      <section class="main">
-        <div class="content">
-          <div class="logo-cxlab-blanco-parent">
-            <img
-              class="logo-cxlab-blanco"
-              loading="lazy"
-              alt="Cx Lab logo"
-              src="./public/logo-cxlab-blanco@2x.png"
-            />
-            <img
-              class="image-80-icon"
-              alt="FarmaCheck logo"
-              src="./public/image-80@2x.png"
-            />
-          </div>
+        a.boton-base:visited {
+            color: inherit;          /* Evita que el color cambie cuando el enlace es visitado */
+        }
+
+        .botn-base img.icono {
+            width: 20px;             /* Ajusta el tamaño de la flecha */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-8-1">
+        <div class="cabecera-azul">
+            <img class="icon" alt src="./-1501@2x.7d7aeea6.png">
         </div>
-      </section>
-      <div class="header">
-        <b class="texto-inicio">
-          Evalúa qué necesita ahora tu farmacia y ¡soluciónalo!
-        </b>
-      </div>
-      <img class="empty-icon" alt="" src="./public/empty@2x.png" />
-      <button class="button-139" onclick="window.location.href='pregunta.php?num=1';">
-        <b class="empezar">Empezar</b>
-        <div class="arrow-right-wrapper">
-          <img class="arrow-right-icon" alt="" src="./public/arrow-right.svg" />
+        <div class="cabecera-azul1">
+            <img class="logo-farmacheck-fondo-claro-co" alt src="./logo-farmacheck-fondo-claro-copia-1@2x.9791d48e.png">
         </div>
-      </button>
+        <div class="contenido">
+            <b class="averigua-qu-necesita">Averigua qué necesita tu farmacia y, ¡soluciónalo! </b>
+            <img class="contenido-child" alt src="./frame-14@2x.85461713.png">
+            <div class="botn-base-wrapper">
+                <a href="./pregunta.php?num=1" class="botn-base boton-base">
+                    <b class="empezar">Empezar</b>
+                    <img class="icono" alt src="./icono.7912e38b.svg">
+                </a>
+            </div>
+        </div>
     </div>
-  </body>
+</body>
 </html>

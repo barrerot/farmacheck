@@ -1,22 +1,19 @@
-html, body {
+body {
   margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
+  line-height: normal;
 }
 
 :root {
   /* fonts */
-  --font-lexend: Lexend;
-  --farmacheck-1-desktop-body-highlight-bold: Montserrat;
+  --farmacheck-1-mobile-headings-heading-2: Montserrat;
 
   /* font sizes */
-  --farmacheck-1-desktop-body-highlight-bold-size: 18px;
+  --farmacheck-1-mobile-headings-heading-2-size: 24px;
 
-  /* Spacing */
-  --spacing-size-size-1: 4px;
+  /* Colors */
+  --color-white: #fff;
+  --color-black: #000;
 
   /* Paddings */
-  --padding-xl: 20px;
+  --padding-xs: 12px;
 }
