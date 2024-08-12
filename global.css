@@ -6,14 +6,42 @@ body {
 :root {
   /* fonts */
   --farmacheck-1-mobile-headings-heading-2: Montserrat;
+  --text-xl-bold: Inter;
 
   /* font sizes */
   --farmacheck-1-mobile-headings-heading-2-size: 24px;
+  --farmacheck-1-mobile-headings-heading-1-size: 28px;
+  --farmacheck-1-desktop-headings-heading-4-size: 32px;
+  --farmacheck-1-mobile-body-feature-standard-size: 18px;
+  --font-size-base: 16px;
+  --text-xl-bold-size: 20px;
 
   /* Colors */
   --color-white: #fff;
+  --color-aquamarine: #98ffca;
   --color-black: #000;
+  --color-gray: #16213a;
+  --color-whitesmoke: #f9fafb;
+  --gray-600: #475467;
+  --warning-100: #feefc7;
+
+  /* Gaps */
+  --gap-xl: 20px;
+  --gap-sm: 14px;
+  --gap-13xl: 32px;
+  --gap-9xs: 4px;
 
   /* Paddings */
   --padding-xs: 12px;
+  --padding-smi: 13px;
+  --padding-base: 16px;
+  --padding-105xl: 124px;
+  --padding-53xl: 72px;
+  --padding-xl: 20px;
+  --padding-9xl: 28px;
+  --padding-2xs: 11px;
+
+  /* Border radiuses */
+  --br-5xs: 8px;
+  --br-9xs: 4px;
 }

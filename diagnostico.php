@@ -65,154 +65,159 @@ $mysqli->close();
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
     <title>Diagnóstico FarmaCheck</title>
-    <link rel="stylesheet" href="src/css/styles.css">
-    <style>
-        .accordion {
-            background-color: #00d1a1;
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            width: 100%;
-            text-align: left;
-            border: none;
-            outline: none;
-            transition: background-color 0.3s, transform 0.3s;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .accordion:hover,
-        .accordion.active {
-            background-color: #00a97f;
-        }
-
-        .accordion::after {
-            content: '\25BC';
-            font-size: 16px;
-            position: absolute;
-            right: 20px;
-            transition: transform 0.3s;
-        }
-
-        .accordion.active::after {
-            transform: rotate(180deg);
-        }
-
-        .panel {
-            display: none;
-            background-color: white;
-            color: black; /* Asegurar que el texto es negro */
-            overflow: hidden;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .panel img {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .panel p {
-            color: black; /* Asegurar que los párrafos sean negros */
-        }
-
-        .active + .panel {
-            display: block;
-        }
-
-        .email-form {
-            background-color: white;
-            color: black;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .email-form input[type="email"] {
-            padding: 10px;
-            margin-top: 10px;
-            width: 80%;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .email-form button {
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #00d1a1;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .email-form button:hover {
-            background-color: #00a97f;
-        }
-
-        .email-form p {
-            color: black; /* Asegurar que el texto sea negro */
-        }
-
-        .email-form h2 {
-            color: black; /* Asegurar que el texto sea negro */
-        }
-    </style>
-    <script>
-        function toggleAccordion(element) {
-            element.classList.toggle('active');
-            var panel = element.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
 </head>
 <body>
-    <div class="diagnostico-container">
-        <h1>Diagnóstico FarmaCheck</h1>
-        <p>Fecha <?php echo date('j/n/Y'); ?></p>
-        
-        <button class="accordion" onclick="toggleAccordion(this)">El nivel actual de tu farmacia</button>
-        <div class="panel">
-            <img src="src/images/<?php echo strtoupper($nivel_actual); ?>.png" alt="Pirámide de Nivel">
-            <p><?php echo $nivel_descripcion; ?></p>
+    <div class="escritorio1">
+        <div class="cabecera-azul4">
+            <img class="icon2" alt="FarmaCheck Logo" src="./public/undefined@2x.png">
+        </div>
+        <div class="contenido2">
+            <div class="introduccin">
+                <div class="enhorabuena-parent">
+                    <div class="enhorabuena">¡Enhorabuena!</div>
+                    <div class="aqu-tienes-tu">Aquí tienes tu diagnóstico</div>
+                </div>
+                <div class="intro-texto-container">
+                    <p class="muchas-gracias-por-completar-l">
+                        <span class="muchas-gracias-por">Muchas gracias por completar la evaluación online de </span>
+                        <i class="farmacheck">FarmaCheck</i>
+                        <span>. </span>
+                    </p>
+                    <p class="muchas-gracias-por-completar-l">
+                        Estamos seguros de que la información que encontrarás a continuación te hará reflexionar y cambiar la forma en que ves tu farmacia.
+                    </p>
+                    <p class="te-deseamos-muchos">Te deseamos muchos éxitos.</p>
+                </div>
+                <div class="advertencia-texto-predefinid">
+                    <div class="contenido3">
+                        <b class="ttulo">Nota importante</b>
+                        <div class="nota">
+                            <p class="la-precisin-de">
+                                La precisión de este diagnóstico depende directamente de la calidad de tus respuestas.
+                            </p>
+                            <p class="te-deseamos-muchos">
+                                <span>Antes de tomar acción, te recomendamos que consultes tus resultados con un </span>
+                                <b class="consultor-certificado-oficialm">consultor certificado oficialmente en Experiencia de Cliente y con experiencia en Farmacias</b>
+                                <span>.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <img class="divider-icon" alt="" src="./public/divider.svg">
+            </div>
+
+            <!-- Sección Nivel -->
+            <div class="seccin-nivel">
+                <div class="imagen-nivel-wrapper">
+                    <img class="imagen-nivel-icon" alt="Pirámide de Nivel" src="src/images/<?php echo strtoupper($nivel_actual); ?>.png">
+                </div>
+                <b class="el-nivel-de">El nivel de tu farmacia</b>
+                <div class="texto-generado-container">
+                    <p><?php echo $nivel_descripcion; ?></p>
+                </div>
+                <img class="divider-icon" alt="" src="./public/divider1.svg">
+            </div>
+
+            <!-- Sección Prioridad -->
+            <div class="seccin-prioridad">
+                <div class="imagen-nivel-wrapper">
+                    <img class="vector-icon" alt="" src="./public/vector.svg">
+                </div>
+                <b class="el-nivel-de">La prioridad de la farmacia</b>
+                <div class="texto-generado-container">
+                    <p class="muchas-gracias-por-completar-l">Pueden haber muchas cosas importantes para hacer pero, de todas ellas, sólo una es la MÁS IMPORTANTE.</p>
+                    <p class="muchas-gracias-por-completar-l">
+                        <span>Esta tarea más importante o prioritaria es lo que nosotros llamamos vuestra </span>
+                        <b class="muchas-gracias-por">Necesidad Vital</b><span>. </span>
+                    </p>
+                    <p class="te-deseamos-muchos">
+                        <span>Cuando identificas la Necesidad Vital de tu farmacia y mejoras en ella, aunque sea un poco, te darás cuenta de que </span>
+                        <b class="muchas-gracias-por">avanzarás mucho más rápido y fácil en las siguientes necesidades</b><span>.</span>
+                    </p>
+                </div>
+                <div class="texto-generado-container">
+                    <p><?php echo htmlspecialchars($necesidad_vital['necesidad']); ?></p>
+                    <p><?php echo htmlspecialchars($necesidad_vital['explicacion']); ?></p>
+                </div>
+                <img class="divider-icon" alt="" src="./public/divider2.svg">
+            </div>
+
+            <!-- Sección Consejos -->
+            <div class="seccin-prioridad">
+                <div class="imagen-nivel-wrapper">
+                    <img class="vector-icon1" alt="" src="./public/vector1.svg">
+                </div>
+                <b class="el-nivel-de">Consejos para mejorar</b>
+                <div class="texto-generado-container">
+                    <p class="muchas-gracias-por-completar-l"><span class="muchas-gracias-por">¡Estupendo!</span></p>
+                    <p class="muchas-gracias-por-completar-l">
+                        <span class="muchas-gracias-por">Ya conoces el nivel de desarrollo de tu farmacia y también has descubierto cuál es el aspecto MÁS importante en el que os debéis enfocar ahora: vuestra Necesidad Vital.</span>
+                    </p>
+                    <p class="muchas-gracias-por-completar-l">
+                        <span class="muchas-gracias-por">Ahora es el momento de ponerse manos a la obra pero, ¿qué puedes hacer?</span>
+                    </p>
+                    <p class="muchas-gracias-por-completar-l">
+                        <b class="muchas-gracias-por">A continuación te voy a dar un consejo sencillo de aplicar para que empieces a mejorar desde mañana mismo en vuestra Necesidad Vital.</b>
+                    </p>
+                </div>
+                <div class="texto-generado-container">
+                    <p><?php echo htmlspecialchars($necesidad_vital['tips']); ?></p>
+                </div>
+                <img class="divider-icon" alt="" src="./public/divider3.svg">
+            </div>
+
+            <!-- Últimas recomendaciones -->
+            <div class="seccin-prioridad">
+                <b class="el-nivel-de">Últimas recomendaciones</b>
+                <div class="texto-generado-container">
+                    <span>Ahora te quiero dar dos recomendaciones que te ayudarán a llevar tu farmacia</span>
+                    <b>al siguiente nivel</b>
+                    <span>.</span>
+                </div>
+                <div class="texto-generado-container">
+                    <p class="muchas-gracias-por-completar-l">La primera es que NO seas perfeccionista.</p>
+                    <p class="muchas-gracias-por-completar-l">El momento perfecto no existe. Si esperas a que sea el momento perfecto, no harás nada.</p>
+                    <p class="muchas-gracias-por-completar-l">Actúa ahora.</p>
+                    <p class="el-momento-perfecto-es-ahora"><b>El momento perfecto es AHORA.</b></p>
+                    <p class="muchas-gracias-por-completar-l">
+                        <span>En lugar de eso, </span>
+                        <b class="muchas-gracias-por">intenta mejorar sólo un 10%</b>
+                        <span> y pasa a otra necesidad (volviendo a hacer el diagnóstico de </span>
+                        <i class="farmacheck">FarmaCheck</i><span>). No quedes pegado en una toda el tiempo.</span>
+                    </p>
+                    <p class="muchas-gracias-por-completar-l">
+                        Se trata de ser ágil y AVANZAR poco a poco, pero de manera constante.
+                    </p>
+                    <p class="te-deseamos-muchos">
+                        <span>El segundo consejo es que aproveches </span>
+                        <b class="muchas-gracias-por">tu SESIÓN GRATIS DE CONSULTORÍA conmigo</b>
+                        <span>, donde podrás preguntarme tus dudas y los mejores consejos y prácticas que he ido aprendiendo a lo largo de los últimos 8 años.</span>
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <button class="accordion" onclick="toggleAccordion(this)">El área más importante</button>
-        <div class="panel">
-            <p><?php echo htmlspecialchars($necesidad_vital['necesidad']); ?></p>
-            <p><?php echo htmlspecialchars($necesidad_vital['explicacion']); ?></p>
+        <!-- CTA -->
+        <div class="cta">
+            <div class="cta1">
+                <b class="texto-cta-">Pulsa el botón para reservar una sesión GRATIS con uno de nuestros expertos.</b>
+                <div class="botn-base-frame">
+                    <a href="https://tidycal.com/danisegarra/taller-como-diagnosticar-la-salud-de-tu-farmacia" class="botn-base2">
+                        <b class="quiero-mi-sesin">Quiero mi Sesión Gratis</b>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <button class="accordion" onclick="toggleAccordion(this)">Tips para mejorar desde ya</button>
-        <div class="panel">
-            <ul>
-                <li><?php echo htmlspecialchars($necesidad_vital['tips']); ?></li>
-            </ul>
-        </div>
-
-        <button class="accordion" onclick="toggleAccordion(this)">Otras recomendaciones</button>
-        <div class="panel">
-            <iframe src="https://farmacias.danielsegarra.com/masterclasspiramide" width="100%" height="400" style="border: none;"></iframe>
-        </div>
-        
-        <div class="email-form">
-            <h2>¿Quieres recibir este diagnóstico en tu correo electrónico?</h2>
-            <p>Para obtener una copia de tu diagnóstico directamente en tu bandeja de entrada, simplemente introduce tu dirección de correo electrónico y haz clic en "Enviar".</p>
-            <form action="enviar_diagnostico.php" method="post">
-                <input type="hidden" name="session_id" value="<?php echo $session_id; ?>">
-                <input type="email" name="email" placeholder="Tu correo electrónico" required>
-                <button type="submit">Enviar</button>
-            </form>
+        <!-- Pie de página -->
+        <div class="pie">
+            <img class="logo-cxlab-invertido" alt="Logo CxLab" src="./public/logo-cxlab-invertido@2x.png">
         </div>
     </div>
 </body>

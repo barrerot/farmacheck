@@ -1,106 +1,311 @@
-.icon {
+.icon2 {
   position: absolute;
-  top: 17px;
-  left: 8px;
-  width: 77px;
-  height: 37.9px;
+  top: calc(50% - 25.5px);
+  left: calc(50% - 100.7px);
+  width: 201.5px;
+  height: 51px;
   object-fit: cover;
 }
-.cabecera-azul {
+.cabecera-azul4 {
   align-self: stretch;
   position: relative;
-  background-color: #16213a;
-  height: 72px;
+  background-color: var(--color-gray);
+  height: 66px;
   overflow: hidden;
   flex-shrink: 0;
 }
-.logo-farmacheck-fondo-claro-co {
-  position: absolute;
-  top: calc(50% - 25px);
-  left: calc(50% - 100px);
-  width: 200px;
-  height: 50.6px;
-  object-fit: cover;
-}
-.cabecera-azul1 {
-  width: 375px;
-  position: relative;
-  background-color: var(--color-white);
-  height: 72px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.averigua-qu-necesita {
+.aqu-tienes-tu,
+.enhorabuena {
   align-self: stretch;
   position: relative;
   line-height: 120%;
+  font-weight: 800;
 }
-.contenido-child {
-  width: 351px;
-  position: relative;
-  border-radius: 4px;
-  height: 420px;
-  overflow: hidden;
-  flex-shrink: 0;
-  object-fit: cover;
+.aqu-tienes-tu {
+  font-size: var(--farmacheck-1-desktop-headings-heading-4-size);
 }
-.empezar {
-  position: relative;
-  line-height: 120%;
-}
-.botn-base,
-.icono {
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.icono {
-  width: 32px;
-  position: relative;
-  height: 32px;
-}
-.botn-base {
+.enhorabuena-parent {
   align-self: stretch;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  background-color: #98ffca;
-  height: 60px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
+  justify-content: flex-start;
+  text-align: center;
+  color: var(--color-black);
 }
-.botn-base-wrapper,
-.contenido,
-.iphone-8-1 {
+.farmacheck,
+.muchas-gracias-por {
+  font-family: var(--farmacheck-1-mobile-headings-heading-2);
+}
+.farmacheck {
+  font-weight: 700;
+}
+.muchas-gracias-por-completar-l {
+  margin-block-start: 0;
+  margin-block-end: 32px;
+}
+.te-deseamos-muchos {
+  margin: 0;
+}
+.intro-texto-container,
+.ttulo {
+  align-self: stretch;
+  position: relative;
+}
+.intro-texto-container {
+  font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
+  line-height: 135%;
+}
+.ttulo {
+  line-height: 30px;
+}
+.la-precisin-de {
+  margin-block-start: 0;
+  margin-block-end: 16px;
+}
+.consultor-certificado-oficialm {
+  font-family: var(--text-xl-bold);
+}
+.nota {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+}
+.advertencia-texto-predefinid,
+.contenido3 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.contenido3 {
+  gap: var(--gap-9xs);
+}
+.advertencia-texto-predefinid {
+  border-radius: var(--br-5xs);
+  background-color: var(--warning-100);
+  padding: var(--padding-xs);
+  font-size: var(--text-xl-bold-size);
+  font-family: var(--text-xl-bold);
+}
+.divider-icon {
+  align-self: stretch;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  height: 1px;
+  flex-shrink: 0;
+}
+.introduccin {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-13xl);
+  font-size: 40px;
+}
+.imagen-nivel-icon {
+  width: 600px;
+  position: relative;
+  height: 447.9px;
+}
+.imagen-nivel-wrapper {
+  align-self: stretch;
   background-color: var(--color-white);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-2xs);
 }
-.botn-base-wrapper {
-  width: 375px;
-  justify-content: center;
-  padding: 13px var(--padding-xs);
+.el-nivel-de {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--farmacheck-1-mobile-headings-heading-2-size);
+  line-height: 120%;
+  color: var(--color-black);
+}
+.piramide-nivel-icon {
+  width: 600px;
+  position: relative;
+  height: 458.7px;
+  object-fit: cover;
+}
+.imagen-diagnstico {
+  width: 688px;
+  background-color: var(--color-white);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-9xl);
   box-sizing: border-box;
-  text-align: left;
 }
-.contenido,
-.iphone-8-1 {
+.texto-generado-container {
+  align-self: stretch;
+  position: relative;
+  line-height: 135%;
+}
+.seccin-nivel {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-13xl);
+}
+.vector-icon {
+  width: 600px;
+  position: relative;
+  height: 444.4px;
+}
+.seccin-prioridad {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-13xl);
+}
+.vector-icon1 {
+  width: 600px;
+  position: relative;
+  height: 434.5px;
+}
+.una-sorpresa1 {
+  text-decoration: underline;
+}
+.el-momento-perfecto-es-ahora {
+  margin-block-start: 0;
+  margin-block-end: 32px;
+  white-space: pre-wrap;
+}
+.donde-podrs-preguntarme {
+  font-family: var(--farmacheck-1-mobile-headings-heading-2);
+  white-space: pre-wrap;
+}
+.contenido2 {
+  width: 688px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-9xl) 0;
+  box-sizing: border-box;
+  gap: 64px;
+}
+.texto-cta- {
+  width: 668px;
+  display: inline-block;
+}
+.quiero-mi-sesin,
+.texto-cta- {
+  position: relative;
+  line-height: 120%;
+}
+.botn-base2 {
+  align-self: stretch;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+  border-radius: var(--br-5xs);
+  background-color: var(--color-aquamarine);
+  height: 60px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.botn-base-frame,
+.cta,
+.cta1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.botn-base-frame {
+  align-self: stretch;
+  overflow: hidden;
+  justify-content: center;
+  padding: var(--padding-smi) var(--padding-xs);
+  text-align: left;
+  font-size: var(--farmacheck-1-mobile-headings-heading-1-size);
+}
+.cta,
+.cta1 {
   justify-content: flex-start;
 }
-.contenido {
-  width: 375px;
-  padding: var(--padding-xs);
+.cta1 {
+  width: 688px;
+  padding: var(--padding-xl) 0;
   box-sizing: border-box;
-  gap: 20px;
+  gap: var(--gap-13xl);
 }
-.iphone-8-1 {
+.cta {
+  align-self: stretch;
+  background-color: var(--color-whitesmoke);
+  overflow: hidden;
+  padding: 32px var(--padding-53xl);
+  text-align: center;
+  font-size: var(--farmacheck-1-desktop-headings-heading-4-size);
+  color: var(--color-black);
+}
+.logo-cxlab-invertido {
+  width: 129px;
+  position: relative;
+  height: 62px;
+  object-fit: cover;
+}
+.escritorio1,
+.pie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pie {
+  align-self: stretch;
+  box-shadow: 0 0 2px rgba(23, 26, 31, 0.12), 0 0 1px rgba(23, 26, 31, 0.07);
+  background-color: var(--color-gray);
+  justify-content: flex-end;
+  padding: var(--padding-base) var(--padding-105xl);
+}
+.escritorio1 {
   width: 100%;
   position: relative;
-  text-align: center;
-  font-size: var(--farmacheck-1-mobile-headings-heading-2-size);
-  color: var(--color-black);
+  background-color: var(--color-white);
+  overflow: hidden;
+  justify-content: flex-start;
+  gap: 24px;
+  text-align: left;
+  font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
+  color: var(--gray-600);
   font-family: var(--farmacheck-1-mobile-headings-heading-2);
+}
+
+.botn-base2 {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none; /* Quitar el subrayado */
+  color: black; /* Cambiar el color del texto */
+  background-color: var(--color-aquamarine);
+  padding: 15px 30px; /* Ajusta el padding según sea necesario */
+  border-radius: var(--br-5xs);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  font-size: 1.2em;
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.botn-base2:hover {
+  background-color: #7dfeb7; /* Cambia el color al hacer hover si deseas */
+}
+
+.quiero-mi-sesin {
+  color: black; /* Asegúrate de que el texto sea negro */
+  text-decoration: none; /* Quitar el subrayado dentro del <b> */
 }
