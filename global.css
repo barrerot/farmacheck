@@ -1,6 +1,9 @@
-body {
+/* Restablecer márgenes y padding */
+body, html {
   margin: 0;
-  line-height: normal;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Evita el desbordamiento horizontal */
 }
 
 :root {
@@ -44,4 +47,94 @@ body {
   /* Border radiuses */
   --br-5xs: 8px;
   --br-9xs: 4px;
+}
+
+/* Asegurar que el texto no se recorte */
+.texto-generado-container {
+  width: 100%;
+  font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
+  line-height: 1.5; /* Aumentar el interlineado para mejorar la legibilidad */
+  word-wrap: break-word; /* Asegura que el texto largo se quiebre en palabras */
+}
+
+.contenido2 {
+  width: 100%;
+  padding: 10px; /* Padding ajustado para mejorar la adaptabilidad */
+  box-sizing: border-box;
+}
+
+.introduccin, .enhorabuena-parent {
+  font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
+  padding: 0 10px; /* Reduce padding para evitar recortes */
+}
+
+/* Imágenes responsivas */
+.imagen-nivel-icon,
+.piramide-nivel-icon,
+.vector-icon,
+.vector-icon1 {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto; /* Centrar las imágenes */
+}
+
+.imagen-nivel-wrapper {
+  width: 100%; /* Asegura que el contenedor de la imagen ocupe todo el ancho */
+  padding: 0; /* Elimina padding adicional que pueda causar desbordamiento */
+  box-sizing: border-box;
+  text-align: center; /* Centra el contenido */
+}
+
+/* Botones */
+.botn-base-frame {
+  padding: 15px; /* Padding ajustado para móviles */
+  font-size: var(--font-size-base); /* Tamaño de texto ajustado para móviles */
+}
+
+.cta {
+  padding: 20px; /* Padding adicional para móviles */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+  box-sizing: border-box;
+}
+
+/* Imágenes globales */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ajustes adicionales para pantallas pequeñas */
+@media only screen and (max-width: 768px) {
+
+  .icon2 {
+    width: 80%; /* Ajuste para que la imagen sea más pequeña en móviles */
+    height: auto; /* Mantiene la proporción de la imagen */
+    left: 10%; /* Centrar la imagen horizontalmente */
+    top: auto;
+    transform: translateY(-50%); /* Centrado vertical */
+  }
+
+  .contenido2,
+  .cta,
+  .texto-cta- {
+    width: 100%;
+    padding: 10px; /* Padding ajustado para mejorar la adaptabilidad */
+    box-sizing: border-box;
+  }
+
+  .botn-base-frame {
+    padding: 15px; /* Padding ajustado para móviles */
+    font-size: var(--font-size-base); /* Tamaño de texto ajustado para móviles */
+  }
+
+  .cta {
+    padding: 20px; /* Padding adicional para móviles */
+  }
+
+  /* Ajustes en textos */
+  .introduccin, .texto-generado-container, .enhorabuena-parent {
+    font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
+    padding: 0 10px; /* Reduce padding en móviles */
+  }
 }
