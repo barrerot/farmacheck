@@ -4,6 +4,7 @@ body, html {
   padding: 0;
   width: 100%;
   overflow-x: hidden; /* Evita el desbordamiento horizontal */
+  box-sizing: border-box; /* Asegura que padding y border se incluyan en el ancho total */
 }
 
 :root {
@@ -55,12 +56,14 @@ body, html {
   font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
   line-height: 1.5; /* Aumentar el interlineado para mejorar la legibilidad */
   word-wrap: break-word; /* Asegura que el texto largo se quiebre en palabras */
+  word-break: break-word; /* Asegura que el texto largo se quiebre */
 }
 
 .contenido2 {
   width: 100%;
   padding: 10px; /* Padding ajustado para mejorar la adaptabilidad */
   box-sizing: border-box;
+  overflow-wrap: break-word; /* Para asegurar que las palabras largas no se corten */
 }
 
 .introduccin, .enhorabuena-parent {
@@ -108,33 +111,33 @@ img {
 @media only screen and (max-width: 768px) {
 
   .icon2 {
-    width: 80%; /* Ajuste para que la imagen sea más pequeña en móviles */
-    height: auto; /* Mantiene la proporción de la imagen */
-    left: 10%; /* Centrar la imagen horizontalmente */
-    top: auto;
-    transform: translateY(-50%); /* Centrado vertical */
+      width: 80%; /* Ajuste para que la imagen sea más pequeña en móviles */
+      height: auto; /* Mantiene la proporción de la imagen */
+      left: 10%; /* Centrar la imagen horizontalmente */
+      top: auto;
+      transform: translateY(-50%); /* Centrado vertical */
   }
 
   .contenido2,
   .cta,
   .texto-cta- {
-    width: 100%;
-    padding: 10px; /* Padding ajustado para mejorar la adaptabilidad */
-    box-sizing: border-box;
+      width: 100%;
+      padding: 10px; /* Padding ajustado para mejorar la adaptabilidad */
+      box-sizing: border-box;
   }
 
   .botn-base-frame {
-    padding: 15px; /* Padding ajustado para móviles */
-    font-size: var(--font-size-base); /* Tamaño de texto ajustado para móviles */
+      padding: 15px; /* Padding ajustado para móviles */
+      font-size: var(--font-size-base); /* Tamaño de texto ajustado para móviles */
   }
 
   .cta {
-    padding: 20px; /* Padding adicional para móviles */
+      padding: 20px; /* Padding adicional para móviles */
   }
 
   /* Ajustes en textos */
   .introduccin, .texto-generado-container, .enhorabuena-parent {
-    font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
-    padding: 0 10px; /* Reduce padding en móviles */
+      font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
+      padding: 0 10px; /* Reduce padding en móviles */
   }
 }
