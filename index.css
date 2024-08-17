@@ -179,6 +179,7 @@
   align-self: stretch;
   position: relative;
   line-height: 135%;
+  overflow: visible; /* Asegura que el contenido no se corte */
 }
 
 .seccin-nivel {
@@ -188,6 +189,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: var(--gap-13xl);
+  overflow: visible; /* Asegura que el contenido no se corte */
 }
 
 .vector-icon {
@@ -204,6 +206,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--gap-13xl);
+  overflow: visible; /* Asegura que el contenido no se corte */
 }
 
 .vector-icon1 {
@@ -237,6 +240,7 @@
   padding: var(--padding-9xl) 0;
   box-sizing: border-box;
   gap: 64px;
+  overflow: visible; /* Asegura que el contenido no se corte */
 }
 
 .texto-cta- {

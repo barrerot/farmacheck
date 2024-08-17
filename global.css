@@ -54,9 +54,10 @@ body, html {
 .texto-generado-container {
   width: 100%;
   font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
-  line-height: 1.5; /* Aumentar el interlineado para mejorar la legibilidad */
+  line-height: 1.6; /* Aumentar la altura de línea para evitar cortes */
   word-wrap: break-word; /* Asegura que el texto largo se quiebre en palabras */
   word-break: break-word; /* Asegura que el texto largo se quiebre */
+  overflow: visible; /* Asegura que el contenido no se corte */
 }
 
 .contenido2 {
@@ -64,11 +65,14 @@ body, html {
   padding: 10px; /* Padding ajustado para mejorar la adaptabilidad */
   box-sizing: border-box;
   overflow-wrap: break-word; /* Para asegurar que las palabras largas no se corten */
+  overflow: visible; /* Asegura que el contenido no se corte */
 }
 
 .introduccin, .enhorabuena-parent {
   font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
   padding: 0 10px; /* Reduce padding para evitar recortes */
+  overflow: visible; /* Asegura que el contenido no se corte */
+  height: auto; /* Deja que la altura se ajuste automáticamente */
 }
 
 /* Imágenes responsivas */
@@ -139,5 +143,7 @@ img {
   .introduccin, .texto-generado-container, .enhorabuena-parent {
       font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
       padding: 0 10px; /* Reduce padding en móviles */
+      overflow: visible; /* Asegura que el contenido no se corte */
+      height: auto; /* Deja que la altura se ajuste automáticamente */
   }
 }
