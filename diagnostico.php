@@ -142,8 +142,8 @@ $mysqli->close();
                     </p>
                 </div>
                 <div class="texto-generado-container">
-                    <p><?php echo htmlspecialchars($necesidad_vital['necesidad']); ?></p>
-                    <p><?php echo htmlspecialchars($necesidad_vital['explicacion']); ?></p>
+                    <p><?php echo html_entity_decode($necesidad_vital['necesidad']); ?></p>
+                    <p><?php echo html_entity_decode($necesidad_vital['explicacion']); ?></p>
                 </div>
                 <img class="divider-icon" alt="" src="./public/divider2.svg">
             </div>
@@ -167,7 +167,7 @@ $mysqli->close();
                     </p>
                 </div>
                 <div class="texto-generado-container">
-                    <p><?php echo htmlspecialchars($necesidad_vital['tips']); ?></p>
+                    <p><?php echo html_entity_decode($necesidad_vital['tips']); ?></p>
                 </div>
                 <img class="divider-icon" alt="" src="./public/divider3.svg">
             </div>
