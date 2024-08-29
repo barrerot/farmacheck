@@ -58,6 +58,8 @@ body, html {
   word-wrap: break-word; /* Asegura que el texto largo se quiebre en palabras */
   word-break: break-word; /* Asegura que el texto largo se quiebre */
   overflow: visible; /* Asegura que el contenido no se corte */
+  padding-left: 20px; /* Añadido */
+  padding-right: 20px; /* Añadido */
 }
 
 .contenido2 {
@@ -66,11 +68,13 @@ body, html {
   box-sizing: border-box;
   overflow-wrap: break-word; /* Para asegurar que las palabras largas no se corten */
   overflow: visible; /* Asegura que el contenido no se corte */
+  padding-left: 20px; /* Añadido */
+  padding-right: 20px; /* Añadido */
 }
 
 .introduccin, .enhorabuena-parent {
   font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
-  padding: 0 10px; /* Reduce padding para evitar recortes */
+  padding: 0 20px; /* Modificado */
   overflow: visible; /* Asegura que el contenido no se corte */
   height: auto; /* Deja que la altura se ajuste automáticamente */
 }
@@ -142,7 +146,7 @@ img {
   /* Ajustes en textos */
   .introduccin, .texto-generado-container, .enhorabuena-parent {
       font-size: var(--farmacheck-1-mobile-body-feature-standard-size);
-      padding: 0 10px; /* Reduce padding en móviles */
+      padding: 0 20px; /* Modificado */
       overflow: visible; /* Asegura que el contenido no se corte */
       height: auto; /* Deja que la altura se ajuste automáticamente */
   }
