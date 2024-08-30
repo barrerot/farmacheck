@@ -107,10 +107,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->addAddress($email);
 
             // Asunto
-            $mail->Subject = '=?UTF-8?B?' . base64_encode('Tu diagnóstico de FarmaCheck en PDF') . '?=';
+            $mail->Subject = '=?UTF-8?B?' . base64_encode('👉 Aquí tienes tu diagnóstico') . '?=';
 
             // Cuerpo del correo
-            $mail->Body = 'En este email te adjunto en PDF el resultado del diagnóstico que hemos hecho tras tus respuestas. Pero recuerda que tienes una consultoría gratuita que puedes agendar aquí: https://tidycal.com/danisegarra/taller-como-diagnosticar-la-salud-de-tu-farmacia';
+            $mail->isHTML(true); // Usar HTML
+            $mail->Body = "<p>Hola!</p>"
+                        . "<p>Aquí tienes tu diagnóstico.</p>"
+                        . "<p>Pero antes quiero darte 3 recomendaciones importantes:</p>"
+                        . "<ol>"
+                        . "<li>La primera es que marques este email como favorito (una estrella en Gmail) para que lo puedas consultar cuando lo necesites.</li>"
+                        . "<li>La segunda es que cuando mejores en tu Necesidad Vital (lo más importante), vuelvas a FarmaCheck y hagas un nuevo diagnóstico para identificar vuestro siguiente reto.</li>"
+                        . "<li>Y la tercera es que aproveches tu sesión estratégica gratuita conmigo.</li>"
+                        . "</ol>"
+                        . "<p>Como entenderás esto me consume mucho tiempo y sólo puedo ayudar a un número muy reducido de personas, pulsa en el enlace para ser tú una ellas.</p>"
+                        . "<p><a href='https://tidycal.com/danisegarra/sesion-estrategica-gratis'>Reservar sesión estratégica gratis</a></p>"
+                        . "<p>Estamos en contacto! 😉</p>";
 
             // Adjuntar PDF
             $mail->addAttachment($pdf_file);
