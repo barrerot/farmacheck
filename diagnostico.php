@@ -215,6 +215,23 @@ $mysqli->close();
             </div>
         </div>
 
+        <!-- Sección para solicitar diagnóstico en PDF -->
+        <div class="seccion-pdf">
+            <div class="pdf-container">
+                <b class="pdf-titulo">Obtén tu diagnóstico en PDF</b>
+                <p>Introduce tu correo electrónico y te enviaremos tu diagnóstico en formato PDF.</p>
+                <form action="enviar_pdf.php" method="POST">
+                    <input type="hidden" name="nivel_actual" value="<?php echo htmlspecialchars($nivel_actual); ?>">
+                    <input type="hidden" name="nivel_descripcion" value="<?php echo htmlspecialchars($nivel_descripcion); ?>">
+                    <input type="hidden" name="necesidad" value="<?php echo htmlspecialchars($necesidad_vital['necesidad']); ?>">
+                    <input type="hidden" name="explicacion" value="<?php echo htmlspecialchars($necesidad_vital['explicacion']); ?>">
+                    <input type="hidden" name="tips" value="<?php echo htmlspecialchars($necesidad_vital['tips']); ?>">
+                    <input type="email" name="email" placeholder="Tu correo electrónico" required class="input-email">
+                    <button type="submit" class="boton-enviar-pdf">Quiero mi diagnóstico en PDF</button>
+                </form>
+            </div>
+        </div>
+
         <!-- Pie de página -->
         <div class="pie">
             <img class="logo-cxlab-invertido" alt="Logo CxLab" src="./public/logo-cxlab-invertido@2x.png">
