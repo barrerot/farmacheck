@@ -216,9 +216,9 @@ $mysqli->close();
         </div>
 
         <!-- Sección para solicitar diagnóstico en PDF -->
-        <div class="seccion-pdf">
-            <div class="pdf-container">
-                <b class="pdf-titulo">Obtén tu diagnóstico en PDF</b>
+        <div class="seccin-prioridad">
+            <div class="texto-generado-container">
+                <b class="el-nivel-de">Obtén tu diagnóstico en PDF</b>
                 <p>Introduce tu correo electrónico y te enviaremos tu diagnóstico en formato PDF.</p>
                 <form action="enviar_pdf.php" method="POST">
                     <input type="hidden" name="nivel_actual" value="<?php echo htmlspecialchars($nivel_actual); ?>">

@@ -114,11 +114,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->Body = "<p>Hola!</p>"
                         . "<p>Aquí tienes tu diagnóstico.</p>"
                         . "<p>Pero antes quiero darte 3 recomendaciones importantes:</p>"
-                        . "<ol>"
+                        . "<ul>"
                         . "<li>La primera es que marques este email como favorito (una estrella en Gmail) para que lo puedas consultar cuando lo necesites.</li>"
                         . "<li>La segunda es que cuando mejores en tu Necesidad Vital (lo más importante), vuelvas a FarmaCheck y hagas un nuevo diagnóstico para identificar vuestro siguiente reto.</li>"
                         . "<li>Y la tercera es que aproveches tu sesión estratégica gratuita conmigo.</li>"
-                        . "</ol>"
+                        . "</ul>"
                         . "<p>Como entenderás esto me consume mucho tiempo y sólo puedo ayudar a un número muy reducido de personas, pulsa en el enlace para ser tú una ellas.</p>"
                         . "<p><a href='https://tidycal.com/danisegarra/sesion-estrategica-gratis'>Reservar sesión estratégica gratis</a></p>"
                         . "<p>Estamos en contacto! 😉</p>";
@@ -128,17 +128,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Enviar correo
             $mail->send();
-            echo 'El diagnóstico en PDF ha sido enviado a tu correo.';
+
+            // Mostrar mensaje amigable al usuario
+            echo '<div style="text-align:center; margin-top:50px;">';
+            echo '<h2 style="font-size:24px;">¡El diagnóstico en PDF ha sido enviado a tu correo!</h2>';
+            echo '<p style="font-size:18px;">Por favor, revisa tu buzón y descarga el documento.</p>';
+            echo '<p style="font-size:18px;">¡Gracias por confiar en FarmaCheck!</p>';
+            echo '</div>';
 
             // Eliminar archivo temporal
             unlink($pdf_file);
         } catch (Exception $e) {
-            echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
+            echo '<div style="text-align:center; margin-top:50px;">';
+            echo '<h2 style="font-size:24px; color:red;">No se pudo enviar el correo</h2>';
+            echo '<p style="font-size:18px;">Error: ' . $mail->ErrorInfo . '</p>';
+            echo '</div>';
         }
     } else {
-        echo 'Correo electrónico no válido.';
+        echo '<div style="text-align:center; margin-top:50px;">';
+        echo '<h2 style="font-size:24px; color:red;">Correo electrónico no válido</h2>';
+        echo '<p style="font-size:18px;">Por favor, verifica la dirección de correo e intenta nuevamente.</p>';
+        echo '</div>';
     }
 } else {
-    echo 'Método no permitido.';
+    echo '<div style="text-align:center; margin-top:50px;">';
+    echo '<h2 style="font-size:24px; color:red;">Método no permitido</h2>';
+    echo '</div>';
 }
 ?>
