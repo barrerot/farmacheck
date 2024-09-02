@@ -8,15 +8,28 @@ use PHPMailer\PHPMailer\Exception;
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+$mysqli = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
+
+if ($mysqli->connect_error) {
+    die("Error de conexión: " . $mysqli->connect_error);
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    $nivel_actual = isset($_POST['nivel_actual']) ? $_POST['nivel_actual'] : null;
+    $session_id = $_POST['session_id'];
+    $nivel_actual = $_POST['nivel_actual'];
     $nivel_descripcion = strip_tags(html_entity_decode($_POST['nivel_descripcion']));
     $necesidad = strip_tags(html_entity_decode($_POST['necesidad']));
     $explicacion = strip_tags(html_entity_decode($_POST['explicacion']));
     $tips = strip_tags(html_entity_decode($_POST['tips']));
 
-    if ($nivel_actual && $email) {
+    if ($nivel_actual && $email && $session_id) {
+        // Guardar el correo electrónico en la base de datos
+        $stmt = $mysqli->prepare("UPDATE sesiones SET email = ? WHERE session_id = ?");
+        $stmt->bind_param('ss', $email, $session_id);
+        $stmt->execute();
+        $stmt->close();
+
         // Crear una nueva instancia de FPDF
         $pdf = new FPDF();
         $pdf->AddPage();
@@ -76,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdf->Rect(0, 270, 210, 30, 'F'); // Rectángulo para el footer
         $pdf->Image('./public/logo-cxlab-invertido@2x.png',10,275,30); // Logo CxLab (ajusta la ruta)
 
-        // Incluir imagenes vector.png y vector1.png con tamaños y posiciones ajustados
+        // Incluir imágenes vector.png y vector1.png con tamaños y posiciones ajustados
         if (file_exists('./public/vector.png')) {
             $pdf->Image('./public/vector.png', 40, 140, 130); // Imagen grande centrada
         }
@@ -155,4 +168,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo '<h2 style="font-size:24px; color:red;">Método no permitido</h2>';
     echo '</div>';
 }
+
+$mysqli->close();
 ?>

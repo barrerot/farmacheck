@@ -221,6 +221,7 @@ $mysqli->close();
                 <b class="el-nivel-de">Obtén tu diagnóstico en PDF</b>
                 <p>Introduce tu correo electrónico y te enviaremos tu diagnóstico en formato PDF.</p>
                 <form action="enviar_pdf.php" method="POST">
+                    <input type="hidden" name="session_id" value="<?php echo htmlspecialchars($session_id); ?>">
                     <input type="hidden" name="nivel_actual" value="<?php echo htmlspecialchars($nivel_actual); ?>">
                     <input type="hidden" name="nivel_descripcion" value="<?php echo htmlspecialchars($nivel_descripcion); ?>">
                     <input type="hidden" name="necesidad" value="<?php echo htmlspecialchars($necesidad_vital['necesidad']); ?>">
