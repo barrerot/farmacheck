@@ -208,7 +208,7 @@ $mysqli->close();
             <div class="cta1">
                 <b class="texto-cta-">Pulsa el botón para reservar una sesión GRATIS con uno de nuestros expertos.</b>
                 <div class="botn-base-frame">
-                    <a href="https://tidycal.com/danisegarra/taller-como-diagnosticar-la-salud-de-tu-farmacia" class="botn-base2">
+                    <a href="https://farmacias.danielsegarra.com/oferta-sesion-gratis" class="botn-base2">
                         <b class="quiero-mi-sesin">Quiero mi Sesión Gratis</b>
                     </a>
                 </div>
@@ -218,8 +218,11 @@ $mysqli->close();
         <!-- Sección para solicitar diagnóstico en PDF -->
         <div class="seccin-prioridad">
             <div class="texto-generado-container">
-                <b class="el-nivel-de">Obtén tu diagnóstico en PDF</b>
-                <p>Introduce tu correo electrónico y te enviaremos tu diagnóstico en formato PDF.</p>
+                <b class="el-nivel-de">¿Quieres el diagnóstico en PDF?</b>
+                <p>Este diagnóstico sólo estará disponible durante una hora. Después de ese tiempo, toda la información se perderá.
+
+Si quieres que te lo envíe en PDF para poder verlo más adelante con más tranquilidad o para compartirlo con otras personas de tu equipo, introduce tu correo y lo recibirás inmediatamente. 
+</p>
                 <form action="enviar_pdf.php" method="POST">
                     <input type="hidden" name="session_id" value="<?php echo htmlspecialchars($session_id); ?>">
                     <input type="hidden" name="nivel_actual" value="<?php echo htmlspecialchars($nivel_actual); ?>">
