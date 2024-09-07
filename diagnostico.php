@@ -14,6 +14,43 @@ if ($mysqli->connect_error) {
 
 $session_id = isset($_GET['session_id']) ? $_GET['session_id'] : $_SESSION['session_id'];
 
+if (empty($session_id)) {
+    die("No se proporcionó una sesión válida.");
+}
+
+// Sanitizar session_id
+$session_id = $mysqli->real_escape_string($session_id);
+
+// Verificar y registrar el tiempo de inicio
+$result = $mysqli->query("SELECT start_time FROM sessions WHERE session_id = '$session_id'");
+
+if ($result->num_rows > 0) {
+    // Obtener start_time
+    $row = $result->fetch_assoc();
+    $start_time = strtotime($row['start_time']);
+} else {
+    // Insertar start_time
+    $current_time = date('Y-m-d H:i:s');
+    $mysqli->query("INSERT INTO sessions (session_id, start_time) VALUES ('$session_id', '$current_time')");
+    $start_time = strtotime($current_time);
+}
+
+// Verificar si han pasado 30 minutos (1800 segundos)
+$current_time = time(); // Obtener el tiempo actual en segundos
+$elapsed_time = $current_time - $start_time; // Tiempo transcurrido
+$expiration_time = 30 * 60; // 30 minutos en segundos
+
+if ($elapsed_time > $expiration_time) {
+    // Destruir la sesión y redirigir a la página de sesión caducada
+    session_destroy();
+    header("Location: session_expired.php");
+    exit();
+}
+$time_left = $expiration_time - $elapsed_time; // Tiempo restante en segundos
+if ($time_left < 0) {
+    $time_left = 0; // Si el tiempo ya ha pasado, redirigir de inmediato.
+}
+
 // Obtener respuestas del cuestionario
 $result = $mysqli->query("SELECT p.nivel, p.nivel_descripcion, p.necesidad, p.descripcion, p.explicacion, p.tips, r.respuesta 
                           FROM respuestas r 
@@ -29,7 +66,7 @@ if (empty($respuestas)) {
 // Obtener el nivel actual basado en las respuestas "No"
 $niveles = ['FUNDAMENTAL', 'BASICO', 'AVANZADO', 'DIFERENCIAL'];
 $nivel_actual = 'FUNDAMENTAL'; // Nivel por defecto
-$nivel_descripcion = '';
+$nivel_descripcion = 'Nivel predeterminado'; // Descripción predeterminada si no se encuentra un nivel
 
 foreach ($niveles as $nivel) {
     $count = 0;
@@ -39,7 +76,7 @@ foreach ($niveles as $nivel) {
         }
         if ($count >= 2) {
             $nivel_actual = $nivel;
-            $nivel_descripcion = $respuesta['nivel_descripcion'];
+            $nivel_descripcion = $respuesta['nivel_descripcion'] ?? 'Descripción no disponible'; // Usar descripción de la base de datos o un fallback
             break 2;
         }
     }
@@ -71,6 +108,18 @@ $mysqli->close();
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+
+    <script>
+        var timeLeft = <?php echo $time_left; ?>; // Tiempo restante en segundos
+
+        function startTimer() {
+            setTimeout(function() {
+                window.location.href = "session_expired.php";
+            }, timeLeft * 1000);
+        }
+
+        window.onload = startTimer; // Iniciar el temporizador cuando se cargue la página
+    </script>
 </head>
 <body>
     <div class="escritorio1">
@@ -83,6 +132,7 @@ $mysqli->close();
                     <div class="enhorabuena">¡Enhorabuena!</div>
                     <div class="aqu-tienes-tu">Aquí tienes tu diagnóstico</div>
                 </div>
+
                 <div class="intro-texto-container">
                     <p class="muchas-gracias-por-completar-l">
                         <span class="muchas-gracias-por">Muchas gracias por completar la evaluación online de </span>
@@ -221,8 +271,9 @@ $mysqli->close();
                 <b class="el-nivel-de">¿Quieres el diagnóstico en PDF?</b>
                 <p>Este diagnóstico sólo estará disponible durante una hora. Después de ese tiempo, toda la información se perderá.
 
-Si quieres que te lo envíe en PDF para poder verlo más adelante con más tranquilidad o para compartirlo con otras personas de tu equipo, introduce tu correo y lo recibirás inmediatamente. 
-</p>
+                <p>Este diagnóstico sólo estará disponible durante 30 minutos. Después de ese tiempo, <b>toda la información se perderá</b>.</p>
+
+<p>Si quieres que te <b>lo envíe en PDF</b> para poder verlo más adelante con más tranquilidad o para compartirlo con otras personas de tu equipo, <b>pon abajo el email</b> donde quieres que lo envíe. </p>
                 <form action="enviar_pdf.php" method="POST">
                     <input type="hidden" name="session_id" value="<?php echo htmlspecialchars($session_id); ?>">
                     <input type="hidden" name="nivel_actual" value="<?php echo htmlspecialchars($nivel_actual); ?>">

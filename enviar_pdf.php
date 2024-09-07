@@ -126,15 +126,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mail->isHTML(true); // Usar HTML
             $mail->Body = "<p>Hola!</p>"
                         . "<p>Aquí tienes tu diagnóstico.</p>"
-                        . "<p>Pero antes quiero darte 3 recomendaciones importantes:</p>"
-                        . "<ul>"
-                        . "<li>La primera es que marques este email como favorito (una estrella en Gmail) para que lo puedas consultar cuando lo necesites.</li>"
-                        . "<li>La segunda es que cuando mejores en tu Necesidad Vital (lo más importante), vuelvas a FarmaCheck y hagas un nuevo diagnóstico para identificar vuestro siguiente reto.</li>"
-                        . "<li>Y la tercera es que aproveches tu sesión estratégica gratuita conmigo.</li>"
-                        . "</ul>"
-                        . "<p>Como entenderás esto me consume mucho tiempo y sólo puedo ayudar a un número muy reducido de personas, pulsa en el enlace para ser tú una ellas.</p>"
-                        . "<p><a href='https://tidycal.com/danisegarra/sesion-estrategica-gratis'>Reservar sesión estratégica gratis</a></p>"
-                        . "<p>Estamos en contacto! 😉</p>";
+                        . "<p>Pero antes quiero darte <b>3 recomendaciones importantes</b>:</p>"
+                        . "<p>La primera es que <b>marques este email como favorito</b> (una estrella en Gmail) para que lo puedas consultar cuando lo necesites.</p>"
+                        . "<p>La segunda es que cuando mejores en tu Necesidad Vital (lo más importante), vuelvas a <b><i>FarmaCheck</i></b> y hagas <b>un nuevo diagnóstico</b> para identificar vuestro siguiente reto.</p>"
+                        . "<p>Y la tercera es que aproveches tu <b>sesión estratégica gratuita conmigo</b>.</p>"
+                        . "<p>Como entenderás esto me consume mucho tiempo y <u>sólo puedo ayudar a un número muy reducido de personas</u>, pulsa en el enlace para ser tú una ellas.</p>"
+                        . "<p><b><a href='https://tidycal.com/danisegarra/sesion-estrategica-gratis'>Reservar sesión estratégica gratis</a></b></p>"
+                        . "<p>Estamos en contacto! 😉</p>"
+                        . "<p><b>Dani Segarra</b>.</p>";
 
             // Adjuntar PDF
             $mail->addAttachment($pdf_file);
