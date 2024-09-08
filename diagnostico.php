@@ -269,7 +269,6 @@ $mysqli->close();
         <div class="seccin-prioridad">
             <div class="texto-generado-container">
                 <b class="el-nivel-de">¿Quieres el diagnóstico en PDF?</b>
-                <p>Este diagnóstico sólo estará disponible durante una hora. Después de ese tiempo, toda la información se perderá.
 
                 <p>Este diagnóstico sólo estará disponible durante 30 minutos. Después de ese tiempo, <b>toda la información se perderá</b>.</p>
 
