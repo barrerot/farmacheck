@@ -89,13 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdf->Rect(0, 270, 210, 30, 'F'); // Rectángulo para el footer
         $pdf->Image('./public/logo-cxlab-invertido@2x.png',10,275,30); // Logo CxLab (ajusta la ruta)
 
-        // Incluir imágenes vector.png y vector1.png con tamaños y posiciones ajustados
-        if (file_exists('./public/vector.png')) {
-            $pdf->Image('./public/vector.png', 40, 140, 130); // Imagen grande centrada
-        }
-        if (file_exists('./public/vector1.png')) {
-            $pdf->Image('./public/vector1.png', 50, 190, 110); // Imagen grande centrada
-        }
+        
 
         // Guardar PDF temporalmente
         $pdf_file = tempnam(sys_get_temp_dir(), 'diagnostico') . '.pdf';
