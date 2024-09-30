@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         . "<p>La segunda es que cuando mejores en tu Necesidad Vital (lo más importante), vuelvas a <b><i>FarmaCheck</i></b> y hagas <b>un nuevo diagnóstico</b> para identificar vuestro siguiente reto.</p>"
                         . "<p>Y la tercera es que aproveches tu <b>sesión estratégica gratuita conmigo</b>.</p>"
                         . "<p>Como entenderás esto me consume mucho tiempo y <u>sólo puedo ayudar a un número muy reducido de personas</u>, pulsa en el enlace para ser tú una ellas.</p>"
-                        . "<p><b><a href='https://farmacias.danielsegarra.com/oferta-sesion-gratis'>Reservar sesión estratégica gratis</a></b></p>"
+                        . "<p><b><a href='https://farmacia.cxlab.es/sesiongratis'>Reservar sesión estratégica gratis</a></b></p>"
                         . "<p>Estamos en contacto! 😉</p>"
                         . "<p><b>Dani Segarra</b>.</p>";
 

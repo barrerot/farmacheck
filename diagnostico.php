@@ -265,7 +265,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="cta1">
                 <b class="texto-cta-">Pulsa el botón para reservar una sesión GRATIS con uno de nuestros expertos.</b>
                 <div class="botn-base-frame">
-                    <a href="https://farmacias.danielsegarra.com/oferta-sesion-gratis" class="botn-base2">
+                    <a href="https://farmacia.cxlab.es/sesiongratis" class="botn-base2">
                         <b class="quiero-mi-sesin">Quiero mi Sesión Gratis</b>
                     </a>
                 </div>
